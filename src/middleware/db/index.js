@@ -1,4 +1,5 @@
 module.exports = {
     addNewUser: require("./_addNewUser"),
-    getUserByLoginId: require("./_getUserByLoginId")
+    getUserByLoginId: require("./_getUserByLoginId"),
+    handleMatchRequest: require("./_handleMatchRequest")
 }

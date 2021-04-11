@@ -83,6 +83,56 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
   }
 });
 
+//@route    PUT api/user/match
+//@desc     Create an outgoing one-way match request
+//@access   private
+router.get("/match", async (req,res) => {
+  try {
+    const { login_id_FROM, login_id_TO } = req.body;
+
+    //Check and notify if target user exists
+    const existingUser = await mw.db.getUserByLoginId(login_id_TO);
+
+    if (!existingUser) {
+      return res.status(409).json({
+        message: "Target user does not exist!",
+      });
+    }
+
+    //Handle match request
+    const newMatchResult = await mw.db.handleMatchRequest(login_id_FROM, login_id_TO);
+
+    // THIS IS NOT COMPLETE
+    // Thinking these can return true for sucessful match, false for one-way?
+    if(newMatchResult) {
+      return res.status(200).json({
+        message: "New match created!",
+        payload: {
+          //expires: expiryTime,
+          //user: authenticated_user,
+        },
+      });
+    }
+    else {
+      return res.status(200).json({
+        message: "Awaiting completion of match.",
+        payload: {
+          //expires: expiryTime,
+          //user: authenticated_user,
+        },
+      });
+    }
+
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    PUT api/user/:id
 //@desc     Update the details of an existing user
 //@access   private

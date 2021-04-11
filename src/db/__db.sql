@@ -15,7 +15,15 @@ CREATE TABLE app_user
     login_id VARCHAR(255)  NOT NULL UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255)
+    last_name VARCHAR(255) NOT NULL,
+    major VARCHAR(255) NOT NULL,
+    contact_info VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE app_match
+(
+    id SERIAL PRIMARY KEY,
+    login_id_FROM VARCHAR(255)  NOT NULL,
+    login_id_TO VARCHAR(255) NOT NULL
+);
 
