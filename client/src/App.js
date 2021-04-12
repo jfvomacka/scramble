@@ -7,7 +7,6 @@ import { signout } from "./app/state/authSlice";
 
 import PrivateRoute from "./app/containers/PrivateRoute";
 import Navbar from "./app/containers/Navbar";
-import Footer from "./app/components/Footer";
 import Loading from "./app/components/Loading";
 
 const Signin = React.lazy(() => import("./app/routes/Signin"));

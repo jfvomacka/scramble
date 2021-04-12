@@ -46,6 +46,9 @@ const Search = () => {
       login_id_FROM: auth.id,
       login_id_TO: profile,
     });
+    if (res.status !== 200) {
+      console.log("match error");
+    }
   };
 
   return (

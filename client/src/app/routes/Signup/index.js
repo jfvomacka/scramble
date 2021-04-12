@@ -12,10 +12,10 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const defaultLocalState = {
-    loginId: "",
     password: "",
-    firstName: "",
-    lastName: "",
+    name: "",
+    major: "",
+    school: "",
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
@@ -29,7 +29,7 @@ const Signup = () => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "" || localState.name === "") {
+      if (localState.password === "" || localState.name === "") {
         window.alert("Login id, Password or First name cannot be blank");
         return;
       }
