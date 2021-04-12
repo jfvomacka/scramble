@@ -86,7 +86,7 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
 //@route    PUT api/user/match
 //@desc     Create an outgoing one-way match request
 //@access   private
-router.get("/match", async (req,res) => {
+router.post("/match", async (req,res) => {
   try {
     const { login_id_FROM, login_id_TO } = req.body;
 
@@ -108,8 +108,8 @@ router.get("/match", async (req,res) => {
       return res.status(200).json({
         message: "New match created!",
         payload: {
-          //expires: expiryTime,
-          //user: authenticated_user,
+          expires: expiryTime,
+          user: authenticated_user,
         },
       });
     }
@@ -117,11 +117,40 @@ router.get("/match", async (req,res) => {
       return res.status(200).json({
         message: "Awaiting completion of match.",
         payload: {
-          //expires: expiryTime,
-          //user: authenticated_user,
+          expires: expiryTime,
+          user: authenticated_user,
         },
       });
     }
+
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/match
+//@desc     Get a list of the user's confirmed matches
+//@access   private
+router.get("/match", async (req,res) => {
+  try {
+    const { login_id_FROM, login_id_TO } = req.body;
+
+    //Handle match request
+    const newMatchResult = await mw.db.getMatches(login_id_FROM);
+
+    return res.status(200).json({
+      message: "Matches returned",
+      payload: {
+        expires: expiryTime,
+        user: authenticated_user,
+      },
+      matches: newMatchResult
+    });
 
 
   } catch (error) {
