@@ -74,7 +74,7 @@ const Signup = () => {
         <input
           type="text"
           placeholder="Major"
-          name="majorId"
+          name="major"
           value={localState.major}
           onChange={handleChange}
           className="input"
@@ -82,7 +82,7 @@ const Signup = () => {
         <input
           type="text"
           placeholder="School"
-          name="schoolId"
+          name="school"
           value={localState.school}
           onChange={handleChange}
           className="input"
