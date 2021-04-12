@@ -17,13 +17,21 @@ CREATE TABLE app_user
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     major VARCHAR(255) NOT NULL,
+    school VARCHAR(255) NOT NULL,
     contact_info VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE app_request
+(
+    id SERIAL PRIMARY KEY,
+    login_id_FROM VARCHAR(255)  NOT NULL,
+    login_id_TO VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE app_match
 (
     id SERIAL PRIMARY KEY,
-    login_id_FROM VARCHAR(255)  NOT NULL,
-    login_id_TO VARCHAR(255) NOT NULL
+    user1 VARCHAR(255) NOT NULL,
+    user2 VARCHAR(255) NOT NULL
 );
 
