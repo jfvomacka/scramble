@@ -16,18 +16,18 @@ const Landing = () => {
         <p className="is-lg subtitle has-text-centered">
           Find matches.
         </p>
-        {/* {auth.isAuthenticated ? ( */}
+        {auth.isAuthenticated ? (
           <div className="buttons">
-            <Link to="/another">
+            <Link to="/search">
               <button className="button is-blue is-hollow is-large">
-                Another Page
+                Search
               </button>
             </Link>
-            <Link to="/dashboard">
-              <button className="button is-blue is-large">Dashboard</button>
+            <Link to="/match">
+              <button className="button is-blue is-large">Matches</button>
             </Link>
           </div>
-        {/* ) : ( */}
+        ) : (
           <div className="buttons">
             <Link to="/signin">
               <button className="button is-blue is-hollow is-large">
@@ -38,7 +38,7 @@ const Landing = () => {
               <button className="button is-blue is-large">Sign Up</button>
             </Link>
           </div>
-        {/* )} */}
+        )}
       </div>
     </div>
   );

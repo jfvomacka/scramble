@@ -29,7 +29,7 @@ const Signup = () => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "" || localState.firstName === "") {
+      if (localState.loginId === "" || localState.password === "" || localState.name === "") {
         window.alert("Login id, Password or First name cannot be blank");
         return;
       }
@@ -37,8 +37,9 @@ const Signup = () => {
       const res = await axios.post("/api/user", {
         login_id: localState.loginId,
         password: localState.password,
-        first_name: localState.firstName,
-        last_name: localState.lastName,
+        name: localState.name,
+        major: localState.major,
+        school: localState.school,
       });
 
       setLocalState(defaultLocalState);
@@ -64,25 +65,25 @@ const Signup = () => {
         <h2>Sign Up</h2>
         <input
           type="text"
-          placeholder="First Name"
-          name="firstName"
-          value={localState.firstName}
+          placeholder="Name"
+          name="name"
+          value={localState.name}
           onChange={handleChange}
           className="input"
         />
         <input
           type="text"
-          placeholder="Last Name"
-          name="lastName"
-          value={localState.lastName}
+          placeholder="Major"
+          name="majorId"
+          value={localState.major}
           onChange={handleChange}
           className="input"
         />
         <input
           type="text"
-          placeholder="Login Id"
-          name="loginId"
-          value={localState.loginId}
+          placeholder="School"
+          name="schoolId"
+          value={localState.school}
           onChange={handleChange}
           className="input"
         />

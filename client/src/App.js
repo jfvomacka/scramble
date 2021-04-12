@@ -39,8 +39,8 @@ const App = (props) => {
                 <Route exact path="/" {...props} component={Landing} />
                 <Route exact path="/signin" {...props} component={Signin} />
                 <Route exact path="/signup" {...props} component={Signup} />
-                <Route exact path="/match" {...props} component={Dashboard} />
-                <Route exact path="/search" {...props} component={Search} />
+                <PrivateRoute exact path="/match" {...props} component={Dashboard} />
+                <PrivateRoute exact path="/search" {...props} component={Search} />
               </Switch>
           </Suspense>
       </Router>
