@@ -16,10 +16,8 @@ const Dashboard = () => {
   useEffect(() => {
     async function fetchData() {
       console.log("this got called");
-      const res = await axios.get("/api/match", {
-        login_id_FROM: auth.id,
-      });
-      setMatchResults(res.matches);
+      const res = await axios.get(`/api/user/match/${auth.user.login_id}`);
+      setMatchResults(res.data.matches.rows);
     }
     fetchData();
   }, [auth]);
@@ -33,10 +31,7 @@ const Dashboard = () => {
         </p>
         {matchResults.map((profile) => (
           <>
-          <div>{profile.firstName} {profile.LastName}</div>
-          <div>{profile.major}</div>
-          <div>{profile.school}</div>
-          <div>{profile.contact_info}</div>
+          <div>{(profile.user1 === auth.user.login_id) ? profile.user2 : profile.user1} </div>
           </>
         ))}
       </div>

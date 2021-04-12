@@ -100,27 +100,20 @@ router.post("/match", async (req,res) => {
       });
     }
 
+    console.log("login_id_TO");
+
     //Handle match request
     const newMatchResult = await mw.db.handleMatchRequest(login_id_FROM, login_id_TO);
 
-    // THIS IS NOT COMPLETE
     // Thinking these can return true for sucessful match, false for one-way?
     if(newMatchResult) {
       return res.status(200).json({
         message: "New match created!",
-        payload: {
-          expires: expiryTime,
-          user: authenticated_user,
-        },
       });
     }
     else {
       return res.status(200).json({
         message: "Awaiting completion of match.",
-        payload: {
-          expires: expiryTime,
-          user: authenticated_user,
-        },
       });
     }
 
@@ -137,19 +130,17 @@ router.post("/match", async (req,res) => {
 //@route    GET api/user/match
 //@desc     Get a list of the user's confirmed matches
 //@access   private
-router.get("/match", async (req,res) => {
+router.get("/match/:login_id", async (req,res) => {
   try {
-    const { login_id_FROM, login_id_TO } = req.body;
+    const login_id = req.params.login_id;
 
     //Handle match request
-    const newMatchResult = await mw.db.getMatches(login_id_FROM);
+    const newMatchResult = await mw.db.getMatches(login_id);
+
+    console.log(newMatchResult);
 
     return res.status(200).json({
       message: "Matches returned",
-      payload: {
-        expires: expiryTime,
-        user: authenticated_user,
-      },
       matches: newMatchResult
     });
 
@@ -168,17 +159,13 @@ router.get("/match", async (req,res) => {
 //@access   private
 router.get("/searchName/:searchTerm", async (req,res) => {
   try {
-    const { name } = req.params;
+    const name = req.params.searchTerm;
 
     //Handle match request
     const newSearchResult = await mw.db.searchByName(name);
 
     return res.status(200).json({
       message: "Results returned",
-      payload: {
-        expires: expiryTime,
-        user: authenticated_user,
-      },
       results: newSearchResult
     });
 
@@ -197,18 +184,14 @@ router.get("/searchName/:searchTerm", async (req,res) => {
 //@access   private
 router.get("/searchSchool/:searchTerm", async (req,res) => {
   try {
-    const { school } = req.params;
+    const school = req.params.searchTerm;
 
     //Handle match request
     const newSearchResult = await mw.db.searchBySchool(school);
 
     return res.status(200).json({
       message: "Matches returned",
-      payload: {
-        expires: expiryTime,
-        user: authenticated_user,
-      },
-      matches: newMatchResult
+      results: newSearchResult
     });
 
 
@@ -226,20 +209,14 @@ router.get("/searchSchool/:searchTerm", async (req,res) => {
 //@access   private
 router.get("/searchMajor/:searchTerm", async (req,res) => {
   try {
-    const { major } = req.params;
-
-    console.log(major);
+    const major = req.params.searchTerm;
 
     //Handle match request
     const newSearchResult = await mw.db.searchByMajor(major);
 
     return res.status(200).json({
       message: "Matches returned",
-      payload: {
-        expires: expiryTime,
-        user: authenticated_user,
-      },
-      matches: newMatchResult
+      results: newSearchResult
     });
 
 

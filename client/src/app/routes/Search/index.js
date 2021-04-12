@@ -21,9 +21,6 @@ const Search = () => {
     let res;
     // do the backend request for search results
 
-    console.log(searchType);
-    console.log(searchTerm);
-
     if (searchType === "Name") {
       res = await axios.get(`/api/user/searchName/${searchTerm}`);
     }
@@ -34,15 +31,14 @@ const Search = () => {
       res = await axios.get(`/api/user/searchMajor/${searchTerm}`);
     }
 
-    console.log(res.matches);
     // set state
-    setSearchResults(res.matches);
+    setSearchResults(res.data.results.rows);
   };
 
   const createMatch = async (profile) => {
     // do backend request
-    const res = await axios.post("/api/match", {
-      login_id_FROM: auth.id,
+    const res = await axios.post("/api/user/match", {
+      login_id_FROM: auth.user.login_id,
       login_id_TO: profile,
     });
     if (res.status !== 200) {
@@ -72,8 +68,10 @@ const Search = () => {
         </select>
         {searchResults.map((profile) => (
           <>
-          <div>{profile.firstName} {profile.LastName}</div>
-          <button className="button is-red is-hollow" onClick={() => createMatch(profile.id)}>Request</button>
+          <div>{profile.name_} </div>
+          <div>{profile.major} </div>
+          <div>{profile.school} </div>
+          <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Request</button>
           </>
         ))}
       </div>
