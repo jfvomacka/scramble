@@ -16,6 +16,7 @@ const Signup = () => {
     name: "",
     major: "",
     school: "",
+    login_id: ""
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);

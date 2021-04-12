@@ -17,7 +17,7 @@ CREATE TABLE app_user
     name_ VARCHAR(255) NOT NULL,
     major VARCHAR(255) NOT NULL,
     school VARCHAR(255) NOT NULL,
-    contact_info VARCHAR(255) NOT NULL
+    contact_info VARCHAR(255)
 );
 
 CREATE TABLE app_request

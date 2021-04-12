@@ -9,7 +9,7 @@ const express = require("express"),
 //@access   public
 router.post("/", async (req, res) => {
   try {
-    const { login_id, password, name, school, major } = req.body;
+    const { login_id, name, school, major, password } = req.body;
 
     //Check and notify if user already exists
     const existingUser = await mw.db.getUserByLoginId(login_id);
@@ -227,6 +227,8 @@ router.get("/searchSchool", async (req,res) => {
 router.get("/searchMajor", async (req,res) => {
   try {
     const { major } = req.body;
+
+    console.log(major);
 
     //Handle match request
     const newSearchResult = await mw.db.searchByMajor(major);

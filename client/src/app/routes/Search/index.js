@@ -20,22 +20,27 @@ const Search = () => {
   const grabSearchResults = async () => {
     let res;
     // do the backend request for search results
+
+    console.log(searchType);
+    console.log(searchTerm);
+
     if (searchType === "Name") {
-      res = await axios.get("/api/searchName", {
+      res = await axios.get("/api/user/searchName", {
         name: searchTerm,
       });
     }
     else if (searchType === "School") {
-      res = await axios.get("/api/searchSchool", {
+      res = await axios.get("/api/user/searchSchool", {
         school: searchTerm,
       });
     }
     else if (searchType === "Major") {
-      res = await axios.get("/api/searchMajor", {
+      res = await axios.get("/api/user/searchMajor", {
         major: searchTerm,
       });
     }
 
+    console.log(res.matches);
     // set state
     setSearchResults(res.matches);
   };
@@ -60,7 +65,7 @@ const Search = () => {
           placeholder="Search for potential matches!"
           name="searchId"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="input"
         />
         <div className="buttons">
