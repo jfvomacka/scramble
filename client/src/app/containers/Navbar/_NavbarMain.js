@@ -18,11 +18,11 @@ const NavbarMain = () => {
         <NavLink exact activeClassName="active" className="no-deco" to="/">
           Home
         </NavLink>
-        <NavLink exact activeClassName="active" className="no-deco" to="/dashboard">
-          Dashboard
+        <NavLink exact activeClassName="active" className="no-deco" to="/search">
+          Search
         </NavLink>
-        <NavLink exact activeClassName="active" className="no-deco" to="/another">
-          Another Private Page
+        <NavLink exact activeClassName="active" className="no-deco" to="/match">
+          Matches
         </NavLink>
         {auth.isAuthenticated ? (
           <React.Fragment>

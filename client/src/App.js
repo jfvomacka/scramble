@@ -14,7 +14,7 @@ const Signin = React.lazy(() => import("./app/routes/Signin"));
 const Signup = React.lazy(() => import("./app/routes/Signup"));
 const Landing = React.lazy(() => import("./app/routes/Landing"));
 const Dashboard = React.lazy(() => import("./app/routes/Dashboard"));
-const Private = React.lazy(() => import("./app/routes/Private"));
+const Search = React.lazy(() => import("./app/routes/Search"));
 
 const App = (props) => {
   //Check and update authentication status
@@ -39,11 +39,10 @@ const App = (props) => {
                 <Route exact path="/" {...props} component={Landing} />
                 <Route exact path="/signin" {...props} component={Signin} />
                 <Route exact path="/signup" {...props} component={Signup} />
-                <PrivateRoute exact path="/dashboard" {...props} component={Dashboard} />
-                <PrivateRoute exact path="/another" {...props} component={Private} />
+                <Route exact path="/match" {...props} component={Dashboard} />
+                <Route exact path="/search" {...props} component={Search} />
               </Switch>
           </Suspense>
-        <Footer />
       </Router>
     </React.Fragment>
   );
