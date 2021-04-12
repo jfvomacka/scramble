@@ -29,7 +29,7 @@ const Signup = () => {
     try {
       e.preventDefault();
 
-      if (localState.password === "" || localState.name === "") {
+      if (localState.loginId === "" || localState.password === "" || localState.name === "") {
         window.alert("Login id, Password or First name cannot be blank");
         return;
       }
@@ -68,6 +68,14 @@ const Signup = () => {
           placeholder="Name"
           name="name"
           value={localState.name}
+          onChange={handleChange}
+          className="input"
+        />
+        <input
+          type="text"
+          placeholder="Login Id"
+          name="loginId"
+          value={localState.loginId}
           onChange={handleChange}
           className="input"
         />
