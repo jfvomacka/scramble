@@ -3,7 +3,7 @@ const {pool} = require("../../db");
 module.exports = async (name) => {
   try {
     const newSearchResult = await pool.query(
-      `SELECT * FROM app_user WHERE name = $1 LIMIT *`,
+      `SELECT * FROM app_user WHERE name_ = $1 LIMIT *`,
       [name]
     );
     

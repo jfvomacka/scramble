@@ -9,7 +9,7 @@ const express = require("express"),
 //@access   public
 router.post("/", async (req, res) => {
   try {
-    const { login_id, password, first_name, last_name } = req.body;
+    const { login_id, password, name, school, major } = req.body;
 
     //Check and notify if user already exists
     const existingUser = await mw.db.getUserByLoginId(login_id);
@@ -25,14 +25,15 @@ router.post("/", async (req, res) => {
     const hashed_password = await bcrypt.hash(password, salt);
 
     //Insert new user to the table and store the newUser in a variable
-    const newUser = await mw.db.addNewUser(login_id, hashed_password, first_name, last_name);
+    const newUser = await mw.db.addNewUser(login_id, hashed_password, name, school, major);
 
     //Prepare user info to be sent to client and for access token
     const authenticated_user = {
       id: newUser.id,
       login_id: newUser.login_id,
-      first_name: newUser.first_name,
-      last_name: newUser.last_name,
+      name: newUser.name,
+      school: newUser.school,
+      major: newUser.major
     };
 
     //Create and set access token via cookie
