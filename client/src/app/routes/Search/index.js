@@ -25,19 +25,13 @@ const Search = () => {
     console.log(searchTerm);
 
     if (searchType === "Name") {
-      res = await axios.get("/api/user/searchName", {
-        name: searchTerm,
-      });
+      res = await axios.get(`/api/user/searchName/${searchTerm}`);
     }
     else if (searchType === "School") {
-      res = await axios.get("/api/user/searchSchool", {
-        school: searchTerm,
-      });
+      res = await axios.get(`/api/user/searchSchool/${searchTerm}`);
     }
     else if (searchType === "Major") {
-      res = await axios.get("/api/user/searchMajor", {
-        major: searchTerm,
-      });
+      res = await axios.get(`/api/user/searchMajor/${searchTerm}`);
     }
 
     console.log(res.matches);

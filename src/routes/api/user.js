@@ -166,9 +166,9 @@ router.get("/match", async (req,res) => {
 //@route    GET api/user/searchName
 //@desc     Search for users by name
 //@access   private
-router.get("/searchName", async (req,res) => {
+router.get("/searchName/:searchTerm", async (req,res) => {
   try {
-    const { name } = req.body;
+    const { name } = req.params;
 
     //Handle match request
     const newSearchResult = await mw.db.searchByName(name);
@@ -195,9 +195,9 @@ router.get("/searchName", async (req,res) => {
 //@route    GET api/user/searchSchool
 //@desc     Search for users by school
 //@access   private
-router.get("/searchSchool", async (req,res) => {
+router.get("/searchSchool/:searchTerm", async (req,res) => {
   try {
-    const { school } = req.body;
+    const { school } = req.params;
 
     //Handle match request
     const newSearchResult = await mw.db.searchBySchool(school);
@@ -224,9 +224,9 @@ router.get("/searchSchool", async (req,res) => {
 //@route    GET api/user/searchMajor
 //@desc     Search for users by major
 //@access   private
-router.get("/searchMajor", async (req,res) => {
+router.get("/searchMajor/:searchTerm", async (req,res) => {
   try {
-    const { major } = req.body;
+    const { major } = req.params;
 
     console.log(major);
 

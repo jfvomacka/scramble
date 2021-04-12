@@ -74,7 +74,7 @@ const Signup = () => {
         />
         <input
           type="text"
-          placeholder="Login Id"
+          placeholder="Username"
           name="loginId"
           value={localState.loginId}
           onChange={handleChange}
