@@ -162,6 +162,93 @@ router.get("/match", async (req,res) => {
   }
 });
 
+//@route    GET api/user/searchName
+//@desc     Search for users by name
+//@access   private
+router.get("/searchName", async (req,res) => {
+  try {
+    const { name } = req.body;
+
+    //Handle match request
+    const newSearchResult = await mw.db.searchByName(name);
+
+    return res.status(200).json({
+      message: "Results returned",
+      payload: {
+        expires: expiryTime,
+        user: authenticated_user,
+      },
+      results: newSearchResult
+    });
+
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/searchSchool
+//@desc     Search for users by school
+//@access   private
+router.get("/searchSchool", async (req,res) => {
+  try {
+    const { school } = req.body;
+
+    //Handle match request
+    const newSearchResult = await mw.db.searchBySchool(school);
+
+    return res.status(200).json({
+      message: "Matches returned",
+      payload: {
+        expires: expiryTime,
+        user: authenticated_user,
+      },
+      matches: newMatchResult
+    });
+
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/searchMajor
+//@desc     Search for users by major
+//@access   private
+router.get("/searchMajor", async (req,res) => {
+  try {
+    const { major } = req.body;
+
+    //Handle match request
+    const newSearchResult = await mw.db.searchByMajor(major);
+
+    return res.status(200).json({
+      message: "Matches returned",
+      payload: {
+        expires: expiryTime,
+        user: authenticated_user,
+      },
+      matches: newMatchResult
+    });
+
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    PUT api/user/:id
 //@desc     Update the details of an existing user
 //@access   private

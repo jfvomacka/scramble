@@ -38,7 +38,6 @@ module.exports = async (login_id_FROM, login_id_TO) => {
     // Return something to signify that a match has NOT been made?
     return false;
 
-    //return newUserAdd.rows[0];
   } catch (error) {
     throw error;
   }
