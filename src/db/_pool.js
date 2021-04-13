@@ -10,6 +10,7 @@ const devConfig = {
 
 const prodConfig = {
   connectionString: process.env.DATABASE_URL + "?sslmode=require",
+  ssl: { rejectUnauthorized: false }
 };
 
 const pool = new Pool(
