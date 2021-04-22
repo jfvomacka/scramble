@@ -1,23 +1,23 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signin } from "../../state/authSlice";
 
 import "./index.scss";
 
-const Signup = () => {
+const Profile = () => {
   let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || {
+    from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
+  };
 
   const dispatch = useDispatch();
 
   const defaultLocalState = {
+    loginId: "",
     password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    school: "",
-    login_id: ""
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
@@ -27,21 +27,17 @@ const Signup = () => {
     setLocalState({ ...localState, [e.target.name]: e.target.value });
   };
 
-  const onClickSignup = async (e) => {
+  const onClickSignin = async (e) => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "" || localState.name === "") {
-        window.alert("Login id, Password or First name cannot be blank");
+      if (localState.loginId === "" || localState.password === "") {
+        window.alert("Login Id or Password cannot be blank.");
         return;
       }
-
-      const res = await axios.post("/api/user", {
+      const res = await axios.post("/auth/local", {
         login_id: localState.loginId,
         password: localState.password,
-        name: localState.name,
-        major: localState.major,
-        school: localState.school,
       });
 
       setLocalState(defaultLocalState);
@@ -49,9 +45,7 @@ const Signup = () => {
       if (res.status === 200) {
         const { expires, user } = res.data.payload;
         dispatch(signin({ expires, user }));
-        history.replace({
-          pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT,
-        });
+        history.replace(from);
       }
     } catch (error) {
       console.error(error);
@@ -62,36 +56,12 @@ const Signup = () => {
   };
 
   return (
-    <div className="Signup">
+    <div className="Signin">
       <div className="inner container is-fluid">
-        <h2>Sign Up</h2>
+        <h2>Sign In</h2>
         <input
           type="text"
-          placeholder="First Name"
-          name="firstName"
-          value={localState.name}
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          name="lastName"
-          value={localState.name}
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          type="text"
-          placeholder="USC Email"
-          name="email"
-          value={localState.loginId}
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          type="text"
-          placeholder="Username"
+          placeholder="Login Id"
           name="loginId"
           value={localState.loginId}
           onChange={handleChange}
@@ -105,12 +75,10 @@ const Signup = () => {
           onChange={handleChange}
           className="input"
         />
-        <button onClick={onClickSignup} className="button">
-          Sign Up
-        </button>
+        <button onClick={onClickSignin} className="button is-blue is-hollow">Sign In</button>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Profile;
