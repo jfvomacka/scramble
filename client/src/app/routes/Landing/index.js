@@ -31,6 +31,11 @@ const Landing = () => {
                 Sign In
               </button>
             </Link>
+            <Link to="/signup">
+              <button className="button is-blue is-large">
+                Sign Up
+              </button>
+            </Link>
           </div>
         )}
       </div>

@@ -102,6 +102,39 @@ router.post("/", async (req, res) => {
   }
 });
 
+//@route    POST api/user/delete
+//@desc     Delete a user
+//@access   public
+router.post("/delete", async (req, res) => {
+  try {
+    const { login_id } = req.body;
+
+    //Check and notify if user already exists
+    const existingUser = await mw.db.getUserByLoginId(login_id);
+
+    if (!existingUser) {
+      return res.status(409).json({
+        message: "Target user does not exist! This should not have happened. If you managed to make this happen, consider us impressed.",
+      });
+    }
+
+    const deletedUser = await mw.db.deleteUser(login_id);
+
+    console.log(deletedUser);
+
+    return res.status(200).json({
+      message: "Deleted & logged out",
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    PUT api/user/update
 //@desc     Update a user's information (school, major, contact info)
 //@access   private

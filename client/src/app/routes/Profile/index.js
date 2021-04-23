@@ -5,6 +5,8 @@ import { useHistory, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import "./index.scss";
 
+import { useDispatch } from "react-redux";
+
 //Import components
 
 //Import containers
@@ -46,6 +48,16 @@ const Profile = () => {
       }
     }
   };
+
+  const dispatch = useDispatch();
+  const onClickDelete = async (e) => {
+    try {
+        e.preventDefault();
+        history.replace("/delete");
+      } catch (error) {
+        console.error(error);
+      }
+  }
 
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
@@ -115,6 +127,7 @@ const Profile = () => {
           <SignoutButton className="button is-red is-hollow" />
         </div>
         <button onClick={onClick} className="button is-blue is-hollow">Edit Information</button>
+        <button onClick={onClickDelete} className="button is-blue is-hollow">Delete Account (LMAO NERD)</button>
       </div>
     </div>
   );

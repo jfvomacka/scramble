@@ -1,5 +1,6 @@
 module.exports = {
     addNewUser: require("./_addNewUser"),
+    deleteUser: require("./_deleteUser"),
     verifyUser: require("./_verifyUser"),
     getUserProfile: require("./_getUserProfile"),
     editUserInformation: require("./_editUserInformation"),
