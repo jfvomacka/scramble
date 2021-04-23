@@ -1,6 +1,7 @@
 module.exports = {
     addNewUser: require("./_addNewUser"),
     verifyUser: require("./_verifyUser"),
+    getUserProfile: require("./_getUserProfile"),
     editUserInformation: require("./_editUserInformation"),
     getUserByLoginId: require("./_getUserByLoginId"),
     handleMatchRequest: require("./_handleMatchRequest"),

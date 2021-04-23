@@ -155,6 +155,34 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
   }
 });
 
+//@route    GET api/user/profile
+//@desc     Get the entire profile of an existing user
+//@access   private
+router.get("/profile/:login_id", async (req,res) => {
+  try {
+    const login_id = req.params.login_id;
+
+    console.log(login_id);
+
+    //Handle match request
+    const user = await mw.db.getUserProfile(login_id);
+
+    console.log(user);
+
+    return res.status(200).json({
+      message: "User profile retrieved",
+      profile: user
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    GET api/user/verify
 //@desc     Check whether a user has been verified
 //@access   private

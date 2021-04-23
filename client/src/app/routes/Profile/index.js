@@ -1,10 +1,8 @@
 import React from "react";
+import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { signin } from "../../state/authSlice";
-
+import { useEffect, useState } from "react";
 import "./index.scss";
 
 //Import components
@@ -15,15 +13,22 @@ import SignoutButton from "../../containers/SignoutButton";
 const Profile = () => {
   const auth = useSelector((state) => state.auth);
 
+  const [profile, setProfile] = useState([]);
+
   let history = useHistory();
-  let location = useLocation();
-  let { from } = location.state || {
-    from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
-  };
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    async function fetchData() {
+      console.log("this got called");
+      const res = await axios.get(`/api/user/profile/${auth.user.login_id}`);
+      console.log("USER");
+      console.log(res);
+      setProfile(res.data.profile);
+    }
+    fetchData();
+  }, [auth]);
 
-  const onClickSignin = async (e) => {
+  const onClick = async (e) => {
     try {
       e.preventDefault();
 
@@ -42,16 +47,19 @@ const Profile = () => {
   return (
     <div className="Private">
       <div className="inner container is-fixed">
-        <h2 className="title has-text-centered">Another Private Page</h2>
-        <p className="is-md has-text-centered">{`Welcome, ${auth.user.first_name} ${auth.user.last_name}`}</p>
+        <h2 className="title has-text-centered">PROFILE</h2>
         <p className="subtitle has-text-centered">
-          This is Another Private Page. This is a private route and only
-          displayed if user is logged in.
+          Hey there, sexy ;)
         </p>
+        <p className="is-md has-text-centered">{`${profile.first_name} ${profile.last_name}`}</p>
+        <p className="is-md has-text-centered-school">{`${profile.school}`}</p>
+        <p className="is-md has-text-centered-school">{`${profile.major}`}</p>
+        <p className="is-md has-text-centered-school">{`${profile.contact_info}`}</p>
+
         <div className="buttons">
           <SignoutButton className="button is-red is-hollow" />
         </div>
-        <button onClick={onClickSignin} className="button is-blue is-hollow">Edit</button>
+        <button onClick={onClick} className="button is-blue is-hollow">Edit</button>
       </div>
     </div>
   );

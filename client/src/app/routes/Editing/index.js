@@ -43,6 +43,7 @@ const Editing = () => {
       });
 
       //setLocalState(defaultLocalState);
+      console.log(auth.user);
 
       if (res.status === 200) {
         history.replace(from);
