@@ -40,9 +40,20 @@ const Signin = () => {
         password: localState.password,
       });
 
+      const res_verification = await axios.get(`/api/user/verify/${localState.loginId}`);
+      console.log(res_verification);
+
       setLocalState(defaultLocalState);
 
       if (res.status === 200) {
+
+        // If verifiedn't, send to verification page
+        if (res_verification.status === 200 && !res_verification.data.verification.verified) {
+          const { expires, user } = res.data.payload;
+          dispatch(signin({ expires, user }));
+          history.push("/verify");
+        }
+
         const { expires, user } = res.data.payload;
         dispatch(signin({ expires, user }));
         history.replace(from);

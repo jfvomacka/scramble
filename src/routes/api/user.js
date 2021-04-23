@@ -91,17 +91,17 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
   }
 });
 
-//@route    GET api/user/verified
+//@route    GET api/user/verify
 //@desc     Get the details of an existing user
 //@access   private
-router.get("/verified", [mw.auth.authenticate], async (req,res) => {
+router.get("/verify/:login_id", async (req,res) => {
   try {
     const login_id = req.params.login_id;
 
+    console.log(login_id);
+
     //Handle match request
     const verificationRequest = await mw.db.getUserByLoginId(login_id);
-
-    console.log(verificationRequest);
 
     return res.status(200).json({
       message: "Verification status retrieved",

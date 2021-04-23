@@ -12,6 +12,12 @@ import Loading from "./app/components/Loading";
 const Signin = React.lazy(() => import("./app/routes/Signin"));
 const Signup = React.lazy(() => import("./app/routes/Signup"));
 const Landing = React.lazy(() => import("./app/routes/Landing"));
+const Profile = React.lazy(() => import("./app/routes/Profile"));
+const TOS = React.lazy(() => import("./app/routes/TOS"));
+const FAQ = React.lazy(() => import("./app/routes/FAQ"));
+const Privacy = React.lazy(() => import("./app/routes/Privacy"));
+const Editing = React.lazy(() => import("./app/routes/Editing"));
+const Verify = React.lazy(() => import("./app/routes/Verify"));
 //const Dashboard = React.lazy(() => import("./app/routes/Dashboard"));
 //const Search = React.lazy(() => import("./app/routes/Search"));
 
@@ -38,6 +44,12 @@ const App = (props) => {
                 <Route exact path="/" {...props} component={Landing} />
                 <Route exact path="/signin" {...props} component={Signin} />
                 <Route exact path="/signup" {...props} component={Signup} />
+                <PrivateRoute exact path="/profile" {...props} component={Profile} />
+                <Route exact path="/tos" {...props} component={TOS} />
+                <Route exact path="/faq" {...props} component={FAQ} />
+                <Route exact path="/privacy" {...props} component={Privacy} />
+                <PrivateRoute exact path="/editing" {...props} component={Editing} />
+                <PrivateRoute exact path="/verify" {...props} component={Verify} />
               </Switch>
           </Suspense>
       </Router>
