@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
 
-import ProfilePicture from "profile-picture"
-import "profile-picture/build/ProfilePicture.css"
-
 import "./index.scss";
 
 const Editing = () => {

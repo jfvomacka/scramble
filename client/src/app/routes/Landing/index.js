@@ -18,20 +18,17 @@ const Landing = () => {
         </p>
         {auth.isAuthenticated ? (
           <div className="buttons">
-            <Link to="/search">
+            <Link to="/profile">
               <button className="button is-blue is-hollow is-large">
-                Search
+                Edit Profile
               </button>
-            </Link>
-            <Link to="/match">
-              <button className="button is-blue is-large">Matches</button>
             </Link>
           </div>
         ) : (
           <div className="buttons">
             <Link to="/signin">
               <button className="button is-blue is-hollow is-large">
-                Edit Profile
+                Sign In
               </button>
             </Link>
           </div>

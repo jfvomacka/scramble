@@ -137,6 +137,41 @@ router.put("/update", async (req,res) => {
   }
 });
 
+//@route    PUT api/user/prof
+//@desc     Update a user's information profile picture with a BLOB
+//@access   private
+router.put("/prof", async (req,res) => {
+  try {
+    const { login_id, image } = req.body;
+
+    //Check and notify if target user exists
+    const existingUser = await mw.db.getUserByLoginId(login_id);
+
+    if (!existingUser) {
+      return res.status(409).json({
+        message: "Target user does not exist! This should not have happened. If you managed to make this happen, consider us impressed.",
+      });
+    }
+
+    console.log(image);
+
+    //Handle update
+    const updateResult = await mw.db.updateUserProfilePicture(login_id, image);
+
+    return res.status(200).json({
+      message: "Information successfully updated",
+      updatedInfo: updateResult
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    GET api/user/me
 //@desc     Get the details of an existing user
 //@access   private
