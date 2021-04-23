@@ -13,6 +13,12 @@ const Profile = () => {
     from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
   };
 
+  let verification = await axios.post("/api/user/verified", {
+    login_id: localState.loginId
+  });
+
+  console.log(verification);
+
   const dispatch = useDispatch();
 
   const defaultLocalState = {
@@ -22,38 +28,18 @@ const Profile = () => {
 
   const [localState, setLocalState] = useState(defaultLocalState);
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setLocalState({ ...localState, [e.target.name]: e.target.value });
-  };
+  const auth = useSelector((state) => state.auth);
 
-  const onClickSignin = async (e) => {
-    try {
-      e.preventDefault();
+  const [matchResults, setMatchResults] = useState([]);
 
-      if (localState.loginId === "" || localState.password === "") {
-        window.alert("Login Id or Password cannot be blank.");
-        return;
-      }
-      const res = await axios.post("/auth/local", {
-        login_id: localState.loginId,
-        password: localState.password,
-      });
-
-      setLocalState(defaultLocalState);
-
-      if (res.status === 200) {
-        const { expires, user } = res.data.payload;
-        dispatch(signin({ expires, user }));
-        history.replace(from);
-      }
-    } catch (error) {
-      console.error(error);
-      if (error.response && error.response.data) {
-        window.alert(error.response.data.message);
-      }
+  useEffect(() => {
+    async function fetchData() {
+      console.log("this got called");
+      const res = await axios.get(`/api/user/match/${auth.user.login_id}`);
+      setMatchResults(res.data.matches.rows);
     }
-  };
+    fetchData();
+  }, [auth]);
 
   return (
     <div className="Signin">

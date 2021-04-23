@@ -17,7 +17,7 @@ const Signin = () => {
 
   const defaultLocalState = {
     loginId: "",
-    password: "",
+    verification: "",
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
@@ -58,20 +58,12 @@ const Signin = () => {
   return (
     <div className="Signin">
       <div className="inner container is-fluid">
-        <h2>Sign In</h2>
+        <h2>Verify your account</h2>
         <input
           type="text"
-          placeholder="Login Id"
-          name="loginId"
+          placeholder="Verification code"
+          name="verification"
           value={localState.loginId}
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={localState.password}
           onChange={handleChange}
           className="input"
         />

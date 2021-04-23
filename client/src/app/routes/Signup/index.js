@@ -12,12 +12,11 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const defaultLocalState = {
+    loginId: "",
     password: "",
     firstName: "",
     lastName: "",
-    email: "",
-    school: "",
-    login_id: ""
+    email: ""
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
@@ -31,17 +30,28 @@ const Signup = () => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "" || localState.name === "") {
-        window.alert("Login id, Password or First name cannot be blank");
+      if (localState.loginId === "" || localState.password === "" || localState.firstName === "" || localState.lastName === "") {
+        window.alert("Error: do not leave any fields blank. It makes our matchmaking gremlins' jobs very hard.");
+        return;
+      }
+
+      // Email verification (front-end edition)
+      var emailCheck = localState.email.split("@");
+      if(emailCheck.length !== 2) {
+        window.alert("Error: please enter an actual email.");
+        return;
+      }
+      if(emailCheck[1] !== "usc.edu") {
+        window.alert("Error: email must be a verified usc.edu account.");
         return;
       }
 
       const res = await axios.post("/api/user", {
         login_id: localState.loginId,
         password: localState.password,
-        name: localState.name,
-        major: localState.major,
-        school: localState.school,
+        first_name: localState.firstName,
+        last_name: localState.lastName,
+        email: localState.email
       });
 
       setLocalState(defaultLocalState);
@@ -69,7 +79,7 @@ const Signup = () => {
           type="text"
           placeholder="First Name"
           name="firstName"
-          value={localState.name}
+          value={localState.firstName}
           onChange={handleChange}
           className="input"
         />
@@ -77,7 +87,7 @@ const Signup = () => {
           type="text"
           placeholder="Last Name"
           name="lastName"
-          value={localState.name}
+          value={localState.lastName}
           onChange={handleChange}
           className="input"
         />
@@ -85,7 +95,7 @@ const Signup = () => {
           type="text"
           placeholder="USC Email"
           name="email"
-          value={localState.loginId}
+          value={localState.email}
           onChange={handleChange}
           className="input"
         />

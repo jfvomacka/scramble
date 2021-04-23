@@ -18,11 +18,8 @@ const NavbarMain = () => {
         <NavLink exact activeClassName="active" className="no-deco" to="/">
           Home
         </NavLink>
-        <NavLink exact activeClassName="active" className="no-deco" to="/search">
-          Search
-        </NavLink>
-        <NavLink exact activeClassName="active" className="no-deco" to="/match">
-          Matches
+        <NavLink exact activeClassName="active" className="no-deco" to="/profile">
+          Profile
         </NavLink>
         {auth.isAuthenticated ? (
           <React.Fragment>

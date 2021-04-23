@@ -9,7 +9,7 @@ const express = require("express"),
 //@access   public
 router.post("/", async (req, res) => {
   try {
-    const { login_id, name, school, major, password } = req.body;
+    const { login_id, password, first_name, last_name, email } = req.body;
 
     //Check and notify if user already exists
     const existingUser = await mw.db.getUserByLoginId(login_id);
@@ -24,8 +24,15 @@ router.post("/", async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashed_password = await bcrypt.hash(password, salt);
 
+    // Get new 8-digit verification code (between 10000000 and 99999999)
+    const verification = Math.floor(Math.random() * Math.pow(10, 8)) + Math.pow(10, 7);
+
     //Insert new user to the table and store the newUser in a variable
-    const newUser = await mw.db.addNewUser(login_id, hashed_password, name, school, major);
+    const newUser = await mw.db.addNewUser(login_id, hashed_password, first_name, last_name, email, verification);
+
+    //
+    // Send email?????????
+    //
 
     //Prepare user info to be sent to client and for access token
     const authenticated_user = {
@@ -75,6 +82,33 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
       message: "Success",
       payload: req.user
     });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/verified
+//@desc     Get the details of an existing user
+//@access   private
+router.get("/verified", [mw.auth.authenticate], async (req,res) => {
+  try {
+    const login_id = req.params.login_id;
+
+    //Handle match request
+    const verificationRequest = await mw.db.getUserByLoginId(login_id);
+
+    console.log(verificationRequest);
+
+    return res.status(200).json({
+      message: "Verification status retrieved",
+      verification: verificationRequest
+    });
+
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({

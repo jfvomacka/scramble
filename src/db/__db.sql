@@ -14,9 +14,14 @@ CREATE TABLE app_user
     id SERIAL PRIMARY KEY,
     login_id VARCHAR(255)  NOT NULL UNIQUE,
     hashed_password VARCHAR(255) NOT NULL,
-    name_ VARCHAR(255) NOT NULL,
-    major VARCHAR(255) NOT NULL,
-    school VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    verification INT NOT NULL,
+    verified BOOL NOT NULL,
+
+    major VARCHAR(255),
+    school VARCHAR(255),
     contact_info VARCHAR(255)
 );
 
