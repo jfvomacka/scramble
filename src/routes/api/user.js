@@ -105,7 +105,7 @@ router.post("/", async (req, res) => {
 //@route    PUT api/user/update
 //@desc     Update a user's information (school, major, contact info)
 //@access   private
-router.post("/update", async (req,res) => {
+router.put("/update", async (req,res) => {
   try {
     const { login_id, school, major, contact_info } = req.body;
 
@@ -162,12 +162,8 @@ router.get("/profile/:login_id", async (req,res) => {
   try {
     const login_id = req.params.login_id;
 
-    console.log(login_id);
-
     //Handle match request
     const user = await mw.db.getUserProfile(login_id);
-
-    console.log(user);
 
     return res.status(200).json({
       message: "User profile retrieved",
@@ -195,7 +191,7 @@ router.get("/verify/:login_id", async (req,res) => {
 
     return res.status(200).json({
       message: "Verification status retrieved",
-      verification: verificationRequest
+      verification: verificationRequest.verified
     });
 
 

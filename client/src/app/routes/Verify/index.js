@@ -33,8 +33,13 @@ const Verify = () => {
     try {
       e.preventDefault();
 
-      if (localState.verification=== "") {
+      if (localState.verification === "") {
         window.alert("Error: enter verification code.");
+        return;
+      }
+
+      if(isNaN(localState.verification)) {
+        window.alert("Error: invalid verification code.");
         return;
       }
 
@@ -45,11 +50,9 @@ const Verify = () => {
 
       setLocalState(defaultLocalState);
 
-      console.log(res);
       if (res.status === 200) {
-        const { expires, user } = res.data.payload;
-        dispatch(signin({ expires, user }));
-        history.replace("/profile");
+        from.pathname = "/profile";
+        history.replace(from);
       }
     } catch (error) {
       console.error(error);

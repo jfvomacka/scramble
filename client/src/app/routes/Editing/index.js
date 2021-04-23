@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
+
+import ProfilePicture from "profile-picture"
+import "profile-picture/build/ProfilePicture.css"
 
 import "./index.scss";
 
@@ -24,6 +27,18 @@ const Editing = () => {
 
   const [localState, setLocalState] = useState(defaultLocalState);
 
+  useEffect(() => {
+    async function fetchData() {
+
+      const res_verification = await axios.get(`/api/user/verify/${auth.user.login_id}`);
+
+      if(!res_verification.data.verification) {
+        history.replace("/verify");
+      }
+    }
+    fetchData();
+  }, [auth]);
+
   const handleChange = (e) => {
     e.preventDefault();
     setLocalState({ ...localState, [e.target.name]: e.target.value });
@@ -33,9 +48,7 @@ const Editing = () => {
     try {
       e.preventDefault();
 
-      console.log(localState.school);
-
-      const res = await axios.post("/api/user/update", {
+      const res = await axios.put("/api/user/update", {
         login_id: auth.user.login_id,
         school: localState.school,
         major: localState.major,
@@ -43,7 +56,6 @@ const Editing = () => {
       });
 
       //setLocalState(defaultLocalState);
-      console.log(auth.user);
 
       if (res.status === 200) {
         history.replace(from);
@@ -60,31 +72,34 @@ const Editing = () => {
     <div className="Editing">
       <div className="inner container is-fluid">
         <h2>Edit Profile</h2>
-        <label for="schools">SCHOOL:</label>
-        <select name="schools" id="schools" onChange={handleChange}>
-          <option value="dornsife">Dornsife College of Letters, Arts and Sciences</option>
-          <option value="leventhal">Leventhal School of Accounting</option>
-          <option value="architecture">School of Architecture</option>
-          <option value="roski">Roski School of Art and Design</option>
-          <option value="iovine">Iovine and Young Academy</option>
-          <option value="marshall">Marshall School of Business</option>
-          <option value="sca"> School of Cinematic Arts</option>
-          <option value="annenberg">Annenberg School for Communication and Journalism</option>
-          <option value="kaufman">Glorya Kaufman School of Dance</option>
-          <option value="dentistry">Herman Ostrow School of Dentistry</option>
-          <option value="sda">School of Dramatic Arts</option>
-          <option value="education">Rossier School of Education</option>
-          <option value="viterbi">Viterbi School of Engineering</option>
-          <option value="gerontology">Leonard Davis School of Gerontology</option>
-          <option value="law">Gould School of Law</option>
-          <option value="keck">Keck School of Medicine</option>
-          <option value="music">Thornton School of Music</option>
-          <option value="occupational">T.H. Chan Division of Occupational Science and Occupational Therapy</option>
-          <option value="pharmacy">School of Pharmacy</option>
-          <option value="physicaltherapy">Division of Biokinesiology and Physical Therapy</option>
-          <option value="bovard">Bovard College</option>
-          <option value="pp">Sol Price School of Public Policy</option>
-          <option value="socialwork">Suzanne Dworak-Peck School of Social Work</option>
+
+        <input type="file"></input>
+
+        <label form="schools">SCHOOL:</label>
+        <select name="school" id="school" onChange={handleChange}>
+          <option value="Dornsife College of Letters, Arts and Sciences">Dornsife College of Letters, Arts and Sciences</option>
+          <option value="Leventhal School of Accounting">Leventhal School of Accounting</option>
+          <option value="School of Architecture">School of Architecture</option>
+          <option value="Roski School of Art and Design">Roski School of Art and Design</option>
+          <option value="Iovine and Young Academy">Iovine and Young Academy</option>
+          <option value="Marshall School of Business">Marshall School of Business</option>
+          <option value="School of Cinematic Arts"> School of Cinematic Arts</option>
+          <option value="Annenberg School for Communication and Journalism">Annenberg School for Communication and Journalism</option>
+          <option value="Glorya Kaufman School of Dance">Glorya Kaufman School of Dance</option>
+          <option value="Herman Ostrow School of Dentistry">Herman Ostrow School of Dentistry</option>
+          <option value="School of Dramatic Arts">School of Dramatic Arts</option>
+          <option value="Rossier School of Education">Rossier School of Education</option>
+          <option value="Viterbi School of Engineering">Viterbi School of Engineering</option>
+          <option value="Leonard Davis School of Gerontology">Leonard Davis School of Gerontology</option>
+          <option value="Gould School of Law">Gould School of Law</option>
+          <option value="Keck School of Medicine">Keck School of Medicine</option>
+          <option value="Thornton School of Music">Thornton School of Music</option>
+          <option value="T.H. Chan Division of Occupational Science and Occupational Therapy">T.H. Chan Division of Occupational Science and Occupational Therapy</option>
+          <option value="School of Pharmacy">School of Pharmacy</option>
+          <option value="Division of Biokinesiology and Physical Therapy">Division of Biokinesiology and Physical Therapy</option>
+          <option value="Bovard College">Bovard College</option>
+          <option value="Sol Price School of Public Policy">Sol Price School of Public Policy</option>
+          <option value="Suzanne Dworak-Peck School of Social Work">Suzanne Dworak-Peck School of Social Work</option>
         </select>
 
         <input

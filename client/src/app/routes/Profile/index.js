@@ -12,17 +12,23 @@ import SignoutButton from "../../containers/SignoutButton";
 
 const Profile = () => {
   const auth = useSelector((state) => state.auth);
-
   const [profile, setProfile] = useState([]);
 
   let history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
-      console.log("this got called");
+
+      const res_verification = await axios.get(`/api/user/verify/${auth.user.login_id}`);
+
+      if(res_verification.data.verification) {
+        history.replace("/profile");
+      }
+      else {
+        history.replace("/verify");
+      }
+
       const res = await axios.get(`/api/user/profile/${auth.user.login_id}`);
-      console.log("USER");
-      console.log(res);
       setProfile(res.data.profile);
     }
     fetchData();
@@ -31,9 +37,6 @@ const Profile = () => {
   const onClick = async (e) => {
     try {
       e.preventDefault();
-
-      //const { expires, user } = res.data.payload;
-      //dispatch(signin({ expires, user }));
       history.replace("/editing");
 
     } catch (error) {
@@ -52,9 +55,9 @@ const Profile = () => {
           Hey there, sexy ;)
         </p>
         <p className="is-md has-text-centered">{`${profile.first_name} ${profile.last_name}`}</p>
-        <p className="is-md has-text-centered-school">{`${profile.school}`}</p>
-        <p className="is-md has-text-centered-school">{`${profile.major}`}</p>
-        <p className="is-md has-text-centered-school">{`${profile.contact_info}`}</p>
+        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school}`}</p>
+        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major}`}</p>
+        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info}`}</p>
 
         <div className="buttons">
           <SignoutButton className="button is-red is-hollow" />

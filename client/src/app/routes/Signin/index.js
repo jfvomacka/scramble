@@ -41,22 +41,24 @@ const Signin = () => {
       });
 
       const res_verification = await axios.get(`/api/user/verify/${localState.loginId}`);
-      console.log(res_verification);
+      console.log(res_verification.data.verification);
 
       setLocalState(defaultLocalState);
 
-      if (res.status === 200) {
+      if(res_verification.data.verification) {
+        from.pathname = "/profile";
+      }
+      else {
+        from.pathname = "/verify";
+      }
+      console.log(from);
 
-        // If verifiedn't, send to verification page
-        if (res_verification.status === 200 && !res_verification.data.verification.verified) {
-          const { expires, user } = res.data.payload;
-          dispatch(signin({ expires, user }));
-          history.push("/verify");
-        }
+      if (res.status === 200) {
 
         const { expires, user } = res.data.payload;
         dispatch(signin({ expires, user }));
         history.replace(from);
+
       }
     } catch (error) {
       console.error(error);

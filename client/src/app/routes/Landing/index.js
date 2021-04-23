@@ -31,11 +31,8 @@ const Landing = () => {
           <div className="buttons">
             <Link to="/signin">
               <button className="button is-blue is-hollow is-large">
-                Sign In
+                Edit Profile
               </button>
-            </Link>
-            <Link to="/signup">
-              <button className="button is-blue is-large">Sign Up</button>
             </Link>
           </div>
         )}

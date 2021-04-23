@@ -56,7 +56,7 @@ const FAQ = () => {
         <p> available to you and anyone you match with. None of the information on your Senior </p>
         <p>Scramble profile will be shared outside of Senior Scramble or with third party companies. </p>
 
-        <h3>II have another question, who can I ask?</h3>
+        <h3> I have another question, who can I ask?</h3>
         <p> Email uscseniorscramble@gmail.com with any questions and we’ll get back to you as soon as we can! </p>
 
       </div>
