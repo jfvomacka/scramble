@@ -73,6 +73,41 @@ router.post("/", async (req, res) => {
   }
 });
 
+//@route    PUT api/user/update
+//@desc     Update a user's information (school, major, contact info)
+//@access   private
+router.post("/update", async (req,res) => {
+  try {
+    const { login_id, school, major, contact_info } = req.body;
+
+    //Check and notify if target user exists
+    const existingUser = await mw.db.getUserByLoginId(login_id);
+
+    if (!existingUser) {
+      return res.status(409).json({
+        message: "Target user does not exist! This should not have happened. If you managed to make this happen, consider us impressed.",
+      });
+    }
+
+    console.log(school);
+
+    //Handle update
+    const updateResult = await mw.db.editUserInformation(login_id, school, major, contact_info);
+
+    return res.status(200).json({
+      message: "Information successfully updated",
+      updatedInfo: updateResult
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    GET api/user/me
 //@desc     Get the details of an existing user
 //@access   private
@@ -92,13 +127,11 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
 });
 
 //@route    GET api/user/verify
-//@desc     Get the details of an existing user
+//@desc     Check whether a user has been verified
 //@access   private
 router.get("/verify/:login_id", async (req,res) => {
   try {
     const login_id = req.params.login_id;
-
-    console.log(login_id);
 
     //Handle match request
     const verificationRequest = await mw.db.getUserByLoginId(login_id);
@@ -134,8 +167,6 @@ router.post("/match", async (req,res) => {
       });
     }
 
-    console.log("login_id_TO");
-
     //Handle match request
     const newMatchResult = await mw.db.handleMatchRequest(login_id_FROM, login_id_TO);
 
@@ -170,8 +201,6 @@ router.get("/match/:login_id", async (req,res) => {
 
     //Handle match request
     const newMatchResult = await mw.db.getMatches(login_id);
-
-    console.log(newMatchResult);
 
     return res.status(200).json({
       message: "Matches returned",

@@ -1,23 +1,25 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { signin } from "../../state/authSlice";
 
 import "./index.scss";
 
 const Editing = () => {
+  
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || {
     from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
   };
 
-  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   const defaultLocalState = {
-    loginId: "",
-    password: "",
+    login_id: "",
+    major: "",
+    contact: "",
+    school: ""
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
@@ -27,24 +29,22 @@ const Editing = () => {
     setLocalState({ ...localState, [e.target.name]: e.target.value });
   };
 
-  const onClickSignin = async (e) => {
+  const onClickSave = async (e) => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "") {
-        window.alert("Login Id or Password cannot be blank.");
-        return;
-      }
-      const res = await axios.post("/auth/local", {
-        login_id: localState.loginId,
-        password: localState.password,
+      console.log(localState.school);
+
+      const res = await axios.post("/api/user/update", {
+        login_id: auth.user.login_id,
+        school: localState.school,
+        major: localState.major,
+        contact_info: localState.contact
       });
 
-      setLocalState(defaultLocalState);
+      //setLocalState(defaultLocalState);
 
       if (res.status === 200) {
-        const { expires, user } = res.data.payload;
-        dispatch(signin({ expires, user }));
         history.replace(from);
       }
     } catch (error) {
@@ -56,27 +56,11 @@ const Editing = () => {
   };
 
   return (
-    <div className="Signin">
+    <div className="Editing">
       <div className="inner container is-fluid">
-        <h2>Sign In</h2>
-        <input
-          type="text"
-          placeholder="Login Id"
-          name="loginId"
-          value={localState.loginId}
-          onChange={handleChange}
-          className="input"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={localState.password}
-          onChange={handleChange}
-          className="input"
-        />
+        <h2>Edit Profile</h2>
         <label for="schools">SCHOOL:</label>
-        <input name="schools" id="schools">
+        <select name="schools" id="schools" onChange={handleChange}>
           <option value="dornsife">Dornsife College of Letters, Arts and Sciences</option>
           <option value="leventhal">Leventhal School of Accounting</option>
           <option value="architecture">School of Architecture</option>
@@ -100,7 +84,8 @@ const Editing = () => {
           <option value="bovard">Bovard College</option>
           <option value="pp">Sol Price School of Public Policy</option>
           <option value="socialwork">Suzanne Dworak-Peck School of Social Work</option>
-        </input>
+        </select>
+
         <input
           type="text"
           placeholder="Major"
@@ -109,7 +94,16 @@ const Editing = () => {
           onChange={handleChange}
           className="input"
         />
-        <button onClick={onClickSignin} className="button is-blue is-hollow">Sign In</button>
+
+        <input
+          type="text"
+          placeholder="Contact"
+          name="contact"
+          value={localState.contact}
+          onChange={handleChange}
+          className="input"
+        />
+        <button onClick={onClickSave} className="button is-blue is-hollow">Save Changes</button>
       </div>
     </div>
   );

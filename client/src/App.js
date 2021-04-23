@@ -7,6 +7,7 @@ import { signout } from "./app/state/authSlice";
 
 import PrivateRoute from "./app/containers/PrivateRoute";
 import Navbar from "./app/containers/Navbar";
+import Footer from "./app/components/Footer";
 import Loading from "./app/components/Loading";
 
 const Signin = React.lazy(() => import("./app/routes/Signin"));
@@ -44,14 +45,15 @@ const App = (props) => {
                 <Route exact path="/" {...props} component={Landing} />
                 <Route exact path="/signin" {...props} component={Signin} />
                 <Route exact path="/signup" {...props} component={Signup} />
-                <PrivateRoute exact path="/profile" {...props} component={Profile} />
                 <Route exact path="/tos" {...props} component={TOS} />
                 <Route exact path="/faq" {...props} component={FAQ} />
                 <Route exact path="/privacy" {...props} component={Privacy} />
+                <PrivateRoute exact path="/profile" {...props} component={Profile} />
                 <PrivateRoute exact path="/editing" {...props} component={Editing} />
                 <PrivateRoute exact path="/verify" {...props} component={Verify} />
               </Switch>
           </Suspense>
+        <Footer />
       </Router>
     </React.Fragment>
   );
