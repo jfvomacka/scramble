@@ -180,6 +180,46 @@ router.get("/verify/:login_id", async (req,res) => {
   }
 });
 
+//@route    PUT api/user/verified
+//@desc     Verify a user
+//@access   private
+router.post("/verified", async (req,res) => {
+  try {
+    const { login_id, verification } = req.body;
+
+    //Check and notify if target user exists
+    const existingUser = await mw.db.getUserByLoginId(login_id);
+
+    if (!existingUser) {
+      return res.status(409).json({
+        message: "Target user does not exist! This should not have happened. If you managed to make this happen, consider us impressed.",
+      });
+    }
+
+    //Handle verification request
+    const userVerification = await mw.db.verifyUser(login_id, verification);
+
+    if(userVerification.rowCount > 0) {
+      return res.status(200).json({
+        message: "User successfully verified",
+        updatedInfo: userVerification
+      });
+    }
+    else {
+      return res.status(409).json({
+        message: "Incorrect Verification Code",
+      });
+    }
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    PUT api/user/match
 //@desc     Create an outgoing one-way match request
 //@access   private

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { signin } from "../../state/authSlice";
 
 import "./index.scss";
 
-const Signin = () => {
+const Verify = () => {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || {
@@ -14,6 +15,7 @@ const Signin = () => {
   };
 
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
   const defaultLocalState = {
     loginId: "",
@@ -31,21 +33,23 @@ const Signin = () => {
     try {
       e.preventDefault();
 
-      if (localState.loginId === "" || localState.password === "") {
-        window.alert("Login Id or Password cannot be blank.");
+      if (localState.verification=== "") {
+        window.alert("Error: enter verification code.");
         return;
       }
-      const res = await axios.post("/auth/local", {
-        login_id: localState.loginId,
-        password: localState.password,
+
+      const res = await axios.post("/api/user/verified", {
+        login_id: auth.user.login_id,
+        verification: localState.verification,
       });
 
       setLocalState(defaultLocalState);
 
+      console.log(res);
       if (res.status === 200) {
         const { expires, user } = res.data.payload;
         dispatch(signin({ expires, user }));
-        history.replace(from);
+        history.replace("/profile");
       }
     } catch (error) {
       console.error(error);
@@ -63,7 +67,7 @@ const Signin = () => {
           type="text"
           placeholder="Verification code"
           name="verification"
-          value={localState.loginId}
+          value={localState.verification}
           onChange={handleChange}
           className="input"
         />
@@ -73,4 +77,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Verify;
