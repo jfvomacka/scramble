@@ -11,9 +11,9 @@ const TOS = () => {
   };
 
   return (
-    <div className="Signin">
+    <div className="TOS">
       <div className="inner container is-fluid">
-        <h2>Sign In</h2>
+        <h2>Terms Of Service</h2>
         
       </div>
     </div>

@@ -3,6 +3,7 @@ const express = require("express"),
  bcrypt = require("bcryptjs"),
  jwt = require("jsonwebtoken"),
  mw = require("../../middleware")
+ const nodemailer = require("nodemailer");
 
 //@route    POST api/user
 //@desc     Create a new user
@@ -30,9 +31,37 @@ router.post("/", async (req, res) => {
     //Insert new user to the table and store the newUser in a variable
     const newUser = await mw.db.addNewUser(login_id, hashed_password, first_name, last_name, email, verification);
 
-    //
-    // Send email?????????
-    //
+    // Send verification email
+    const mail = function(recipient, subject, message) {
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAILPASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: recipient,
+        subject,
+        text: message,
+      };
+
+      transporter.sendMail(mailOptions), (error, info) => {
+        if(error) {
+          console.log(error);
+          return error;
+        }
+        console.log(`Email sent: $(info.response}`);
+        return 200;
+      };
+    };
+
+    const subject = "Senior SCramble Verification Code";
+    const recipient = newUser.email;
+    const message = "Your Senior SCramble verification code is: " + newUser.verification;
+    mail(recipient, subject, message);
 
     //Prepare user info to be sent to client and for access token
     const authenticated_user = {

@@ -15,7 +15,7 @@ const Signup = React.lazy(() => import("./app/routes/Signup"));
 const Landing = React.lazy(() => import("./app/routes/Landing"));
 const Profile = React.lazy(() => import("./app/routes/Profile"));
 const TOS = React.lazy(() => import("./app/routes/TOS"));
-const FAQ = React.lazy(() => import("./app/routes/FAQ"));
+const About = React.lazy(() => import("./app/routes/About"));
 const Privacy = React.lazy(() => import("./app/routes/Privacy"));
 const Editing = React.lazy(() => import("./app/routes/Editing"));
 const Verify = React.lazy(() => import("./app/routes/Verify"));
@@ -46,7 +46,7 @@ const App = (props) => {
                 <Route exact path="/signin" {...props} component={Signin} />
                 <Route exact path="/signup" {...props} component={Signup} />
                 <Route exact path="/tos" {...props} component={TOS} />
-                <Route exact path="/faq" {...props} component={FAQ} />
+                <Route exact path="/about" {...props} component={About} />
                 <Route exact path="/privacy" {...props} component={Privacy} />
                 <PrivateRoute exact path="/profile" {...props} component={Profile} />
                 <PrivateRoute exact path="/editing" {...props} component={Editing} />

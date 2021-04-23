@@ -11,9 +11,9 @@ const Privacy = () => {
   };
 
   return (
-    <div className="Signin">
+    <div className="Privacy">
       <div className="inner container is-fluid">
-        <h2>Sign In</h2>
+        <h2>Privacy Policy</h2>
         
       </div>
     </div>
