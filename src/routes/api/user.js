@@ -171,7 +171,7 @@ router.put("/update", async (req,res) => {
 });
 
 //@route    PUT api/user/prof
-//@desc     Update a user's information profile picture with a BLOB
+//@desc     Update a user's  profile picture with a BLOB
 //@access   private
 router.put("/prof", async (req,res) => {
   try {
