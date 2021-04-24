@@ -1,6 +1,6 @@
 const {pool} = require("../../db");
 
-module.exports = async (login_id, iamge) => {
+module.exports = async (login_id, image) => {
   try {
 
     const newUserUpdate = await pool.query(

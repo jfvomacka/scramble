@@ -64,7 +64,9 @@ const Signup = () => {
         if (res_verification.status === 200 && res_verification.data.verification.verified === false) {
           const { expires, user } = res.data.payload;
           dispatch(signin({ expires, user }));
-          history.replace("/verify");
+          history.replace({
+            pathname: "/verify",
+          });
         }
 
         const { expires, user } = res.data.payload;

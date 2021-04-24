@@ -45,15 +45,18 @@ const Editing = () => {
     try {
       e.preventDefault();
 
+      const prof = await axios.get(`/api/user/profile/${auth.user.login_id}`);
+
       const res = await axios.put("/api/user/update", {
         login_id: auth.user.login_id,
-        school: localState.school,
-        major: localState.major,
-        contact_info: localState.contact
+        school: localState.school === "" ? prof.data.profile.school : localState.school,
+        major: localState.major === "" ? prof.data.profile.major : localState.major,
+        contact_info: localState.contact === "" ? prof.data.profile.contact_info : localState.contact
       });
 
       //setLocalState(defaultLocalState);
 
+      from.pathname = "/profile";
       if (res.status === 200) {
         history.replace(from);
       }
@@ -69,8 +72,6 @@ const Editing = () => {
     <div className="Editing">
       <div className="inner container is-fluid">
         <h2>Edit Profile</h2>
-
-        <input type="file"></input>
 
         <label form="schools">SCHOOL:</label>
         <select name="school" id="school" onChange={handleChange}>
