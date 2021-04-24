@@ -31,6 +31,8 @@ const Profile = () => {
       }
 
       const res = await axios.get(`/api/user/profile/${auth.user.login_id}`);
+      console.log(res);
+      //uploadedImage.current = res.data.profile.photo;
       setProfile(res.data.profile);
     }
     fetchData();
@@ -68,16 +70,15 @@ const Profile = () => {
       const reader = new FileReader();
       const { current } = uploadedImage;
       current.file = file;
-      reader.onload = async (e) => {
+      reader.onload = e => {
         current.src = e.target.result;
-        const res = await axios.put("/api/user/prof", {
-          login_id: auth.user.login_id,
-          image: current.src
-        });
       };
       reader.readAsDataURL(file);
       
-      
+      const res = await axios.put("/api/user/prof", {
+        login_id: auth.user.login_id,
+        image: current.src
+      });
 
     }
   };
