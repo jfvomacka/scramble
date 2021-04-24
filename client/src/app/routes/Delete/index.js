@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,14 +11,6 @@ const Signup = () => {
 
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-
-  const defaultLocalState = {
-    loginId: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    email: ""
-  };
 
   const onClickDelete = async (e) => {
     try {

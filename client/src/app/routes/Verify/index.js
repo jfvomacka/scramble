@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { signin } from "../../state/authSlice";
 
 import "./index.scss";
 
@@ -14,7 +12,6 @@ const Verify = () => {
     from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
   };
 
-  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
 
   const defaultLocalState = {
