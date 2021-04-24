@@ -68,15 +68,16 @@ const Profile = () => {
       const reader = new FileReader();
       const { current } = uploadedImage;
       current.file = file;
-      reader.onload = e => {
+      reader.onload = async (e) => {
         current.src = e.target.result;
+        const res = await axios.put("/api/user/prof", {
+          login_id: auth.user.login_id,
+          image: current.src
+        });
       };
       reader.readAsDataURL(file);
       
-      const res = await axios.put("/api/user/prof", {
-        login_id: auth.user.login_id,
-        image: file
-      });
+      
 
     }
   };
