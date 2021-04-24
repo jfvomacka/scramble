@@ -112,17 +112,17 @@ const Profile = () => {
           <img
             ref={uploadedImage}
             style={{
-              width: "100%",
-              height: "100%",
-              position: "acsolute"
+              width: "10%",
+              height: "10%",
+              position: "absolute"
             }}
           />
         </div>
         Click to Edit Profile Pic
 
-        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school}`}</p>
-        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major}`}</p>
-        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info}`}</p>
+        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school == null ? "" : profile.school}`}</p>
+        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major == null ? "" : profile.major}`}</p>
+        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact == null ? "" : profile.contact}`}</p>
         
 
         <div className="buttons">
