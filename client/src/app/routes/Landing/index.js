@@ -19,7 +19,7 @@ const Landing = () => {
         {auth.isAuthenticated ? (
           <div className="buttons">
             <Link to="/profile">
-              <button className="button is-blue is-hollow is-large">
+              <button className="button is-large">
                 Edit Profile
               </button>
             </Link>
@@ -27,13 +27,8 @@ const Landing = () => {
         ) : (
           <div className="buttons">
             <Link to="/signin">
-              <button className="button is-blue is-hollow is-large">
-                Sign In
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button className="button is-blue is-large">
-                Sign Up
+              <button className="button  is-large">
+                SIGN IN
               </button>
             </Link>
           </div>

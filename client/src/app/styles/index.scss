@@ -10,12 +10,19 @@
 html {
   color: map-get($color, "black");
   scroll-behavior: smooth;
+  background-color:map-get($color,"pale yellow");
 }
 
-body, div, section, nav, footer, form, table, article, img, iframe, input, textarea, optgroup, select, button, ul, ol, li, a, h1, h2, h3, h4, h5, h6, p  {
+body, div, section, nav, footer, form, table, article, img, iframe, input, textarea, optgroup, select, ul, ol, li, a, h1, h2, h3, h4, h5, h6, p  {
   font-family:map-get($typography, "primary");
   margin: 0;
   text-rendering: optimizeLegibility;
+}
+button {
+font-family:map-get($typography,"title");
+margin:0;
+text-rendering:optimizeLegibility;
+  
 }
 
 /***** Media Query Blocks *****/

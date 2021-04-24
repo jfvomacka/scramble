@@ -25,10 +25,13 @@ $color: (
   "indigo": #4f69c6,
   "blue": #1b9cfc,
   "green": #436a0d,
-  "yellow": #ffc93c,
   "orange": #ff681f,
-  "red": #cd0a0a,
+  "red": #ef2f25,
+  "dark red": #a91e38,
   "turquoise": #25ccf7,
+  "pale yellow": #fff9de,
+  "dark yellow": #f4b53f,
+  "yellow": #fade53",
 );
 
 $size: (
@@ -61,11 +64,21 @@ $text-alignment: (
   "justified": justify,
 );
 
+$style: (
+"bold": bold,
+"italic": italic,
+"black": black,
+);
+
 $typography: (
   "primary": (
     "Montserrat",
     sans-serif,
   ),
+  "title": (
+  "Transat Text",
+  sans-serif,
+  )
 );
 
 $z-index: (

@@ -51,8 +51,8 @@ button.button {
       color: map-get($color, "light");
 
       &:hover {
-        background-color: darken($val, 10%);
-        border-color: darken($val, 10%);
+        background-color: map-get($color, "dark red");
+        border-color: map-get($color, "dark yellow");
       }
 
       &.is-hollow {
@@ -60,8 +60,8 @@ button.button {
         color: $val;
 
         &:hover {
-          color: darken($val, 15%);
-          background-color: lighten($val, 30%);
+          color: map-get ($color, "yellow");
+          background-color: map-get($color, "dark red");
         }
       }
     }
