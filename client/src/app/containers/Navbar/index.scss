@@ -1,31 +1,51 @@
-@import "../../styles/_variables.scss";
 
 $nav-height: 3rem;
 
 .Navbar {
-    background-color: map-get($color, "dark");
-    color: map-get($color, "light");
-    font-size: map-get($size, "sm");
+    background-color: #a91e38;
+    color: #fade53;
+    font-size: 20px;
+    font-family:Transat Text;
+    font-weight:500;
 
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: map-get($z-index, "highest");
+    z-index: 1;
 
     .inner {
         align-items: center;
         display: flex;
         height: $nav-height;
         justify-content: space-between;
+        
 
         a {
             display: inline-block;
+            margin-top:3px;
+            padding:30px
         }
 
-        .active {
-            color: map-get($color, "grey");
+        a:hover {
+            color: #f4b53f;
         }
     }
+    .home
+    { align-items: center;
+        display: flex;
+        height: $nav-height;
+        justify-content: left;
+        
+
+        a {
+            display: inline-block;
+            margin-top:3px;
+            padding:30px
+        }
+
+        a:hover {
+            color: #f4b53f;
+        }}
 }
 
 .Navbar-Offset {

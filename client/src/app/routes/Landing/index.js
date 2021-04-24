@@ -11,10 +11,11 @@ const Landing = () => {
   const auth = useSelector((state) => state.auth);
   return (
     <div className="Landing">
+
       <div className="inner container is-fluid">
-        <h1 className="title is-xxxxl has-text-centered">USC Scramble</h1>
-        <p className="is-lg subtitle has-text-centered">
-          Find matches.
+        <h1 className="title"></h1>
+        <p className="lemon">
+          let's get cookin'
         </p>
         {auth.isAuthenticated ? (
           <div className="buttons">

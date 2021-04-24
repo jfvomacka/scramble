@@ -1,12 +1,12 @@
-@import "../../styles/variables.scss";
+
 
 .Footer {
-    background-color: map-get($color, "light");
-    color: map-get($color, "grey");
-    font-size: map-get($size, "sm");
+    background-color: transparent;
+    color: #a91e38;
+    font-size: 10px;
     padding: {
-        top: map-get($spacing, "md");
-        bottom: map-get($spacing, "md");
+        top: 10px;
+        bottom: 20px;
     };
 
     .inner {

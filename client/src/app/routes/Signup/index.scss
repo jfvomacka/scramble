@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+
 .Signup {
   .inner {
     margin: {
@@ -6,8 +6,8 @@
         right: auto;
     };
     padding: {
-      top: map-get($spacing, "md");
-      bottom: map-get($spacing, "md");
+      top: 4rem;
+      bottom: 4rem;
     }
     text-align: center;
     width: max-content;

@@ -1,9 +1,9 @@
-@import "../../styles/variables";
+
 .Landing {
     .inner {
         padding: {
-            top: map-get($spacing, "xl");
-            bottom: map-get($spacing, "xl");
+            top: 10rem;
+            bottom: 10rem;
         }
         .title {
             font: {
@@ -15,18 +15,18 @@
             margin: {
                 left: auto;
                 right: auto;
-                top: map-get($size, "lg");
-                bottom: map-get($size, "lg");
+                top: 6rem;
+                bottom: 6rem;
             };
             max-width: 420px;
         }
         .buttons {
             justify-content: center;
             :not(:last-child) {
-                margin-right: map-get($size, "sm");
+                margin-right: 3rem;
             }
             .button {
-                min-width: 1.2 * map-get($spacing, "xl");
+                min-width: 1.2 * 10rem;
             }
         }
     }

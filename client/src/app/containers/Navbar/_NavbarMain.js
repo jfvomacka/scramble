@@ -16,22 +16,25 @@ const NavbarMain = () => {
     <nav className="Navbar">
       <div className="inner container is-fixed">
         <NavLink exact activeClassName="active" className="no-deco" to="/">
-          Home
+          HOME
         </NavLink>
+        <div className="heart">♥ </div>
         {auth.isAuthenticated ? (
           <React.Fragment>
             <NavLink exact activeClassName="active" className="no-deco" to="/profile">
-              Profile
+              PROFILE
             </NavLink>
+             <div className="heart">♥ </div>
             <SignoutButton />
           </React.Fragment>
         ) : (
           <React.Fragment>
             <NavLink exact activeClassName="active" className="no-deco" to="/signin">
-              Sign In
+              SIGN IN
             </NavLink>
+           <div className="heart">♥ </div>
             <NavLink exact activeClassName="active" className="no-deco" to="/signup">
-              Sign Up
+              SIGN UP
             </NavLink>
           </React.Fragment>
         )}
