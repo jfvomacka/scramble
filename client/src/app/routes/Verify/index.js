@@ -63,6 +63,7 @@ const Verify = () => {
     <div className="Signin">
       <div className="inner container is-fluid">
         <h2>Verify your account</h2>
+        <body>Check your email ;)</body>
         <input
           type="text"
           placeholder="Verification code"

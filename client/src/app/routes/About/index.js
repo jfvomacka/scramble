@@ -50,6 +50,12 @@ const FAQ = () => {
         available to you and anyone you match with. None of the information on your Senior 
         Scramble profile will be shared outside of Senior Scramble or with third party companies. </p>
         <p>&nbsp;</p>
+        <h3> Statement of Non-Affiliation</h3>
+        <p>Senior Scramble is not associated with or endorsed by the University of Southern California (USC)
+          or any of its subsidiaries or affiliates. Senior Scramble is completely independent of USC and does
+          not claim to represent the university’s values. The name USC as well as related names, marks,
+          emblems, and images, are registered trademarks of their respective owners.</p>
+        <p>&nbsp;</p>
         <h3> I have another question, who can I ask?</h3>
         <p> Email <a href = "mailto: uscseniorscramble@gmail.com" target="_blank">uscseniorscramble@gmail.com</a> with any questions and we’ll get back to you as soon as we can! </p>
       </div>

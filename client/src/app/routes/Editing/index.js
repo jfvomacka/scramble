@@ -112,7 +112,7 @@ const Editing = () => {
 
         <input
           type="text"
-          placeholder="Contact"
+          placeholder="Contact Information"
           name="contact"
           value={localState.contact}
           onChange={handleChange}
