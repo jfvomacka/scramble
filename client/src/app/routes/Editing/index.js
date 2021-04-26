@@ -75,6 +75,7 @@ const Editing = () => {
 
         <label form="schools">SCHOOL:</label>
         <select name="school" id="school" onChange={handleChange}>
+          <option value="">Select a School! </option>
           <option value="Dornsife College of Letters, Arts and Sciences">Dornsife College of Letters, Arts and Sciences</option>
           <option value="Leventhal School of Accounting">Leventhal School of Accounting</option>
           <option value="School of Architecture">School of Architecture</option>
