@@ -31,7 +31,7 @@ const Profile = () => {
       }
 
       const res = await axios.get(`/api/user/profile/${auth.user.login_id}`);
-      console.log(res);
+      //console.log(res);
       //uploadedImage.current = res.data.profile.photo;
       setProfile(res.data.profile);
     }
@@ -51,7 +51,7 @@ const Profile = () => {
     }
   };
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const onClickDelete = async (e) => {
     try {
         e.preventDefault();
@@ -61,6 +61,7 @@ const Profile = () => {
       }
   }
 
+  /*
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
 
@@ -68,8 +69,8 @@ const Profile = () => {
     const [file] = e.target.files;
     if (file) {
       const reader = new FileReader();
-      const { current } = uploadedImage;
-      current.file = file;
+      const { current } = profile.photo;
+      
       reader.onload = e => {
         current.src = e.target.result;
       };
@@ -82,6 +83,7 @@ const Profile = () => {
 
     }
   };
+  */
 
   return (
     <div className="Private">
@@ -92,37 +94,9 @@ const Profile = () => {
         </p>
         <p className="is-md has-text-centered">{`${profile.first_name} ${profile.last_name}`}</p>
 
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageUpload}
-          ref={imageUploader}
-          style={{
-            display: "none"
-          }}
-        />
-        <div
-          style={{
-            height: "60px",
-            width: "60px",
-            border: "1px dashed black"
-          }}
-          onClick={() => imageUploader.current.click()}
-        >
-          <img
-            ref={uploadedImage}
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "acsolute"
-            }}
-          />
-        </div>
-        Click to Edit Profile Pic
-
-        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school}`}</p>
-        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major}`}</p>
-        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info}`}</p>
+        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school == null ? "" : profile.school}`}</p>
+        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major == null ? "" : profile.major}`}</p>
+        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info == null ? "" : profile.contact_info}`}</p>
         
 
         <div className="buttons">

@@ -54,25 +54,14 @@ const Signup = () => {
         email: localState.email
       });
 
-      const res_verification = await axios.get(`/api/user/verify/${localState.loginId}`);
-
       setLocalState(defaultLocalState);
 
       if (res.status === 200) {
 
-        // If verifiedn't, send to verification page
-        if (res_verification.status === 200 && res_verification.data.verification.verified === false) {
-          const { expires, user } = res.data.payload;
-          dispatch(signin({ expires, user }));
-          history.replace({
-            pathname: "/verify",
-          });
-        }
-
         const { expires, user } = res.data.payload;
         dispatch(signin({ expires, user }));
         history.replace({
-          pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT,
+          pathname: "/profile"
         });
       }
     } catch (error) {
