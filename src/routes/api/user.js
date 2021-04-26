@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
           console.log(error);
           return error;
         }
-        console.log(`Email sent: $(info.response}`);
+        //console.log(`Email sent: $(info.response}`);
         return 200;
       };
     };
@@ -120,7 +120,7 @@ router.post("/delete", async (req, res) => {
 
     const deletedUser = await mw.db.deleteUser(login_id);
 
-    console.log(deletedUser);
+    //console.log(deletedUser);
 
     return res.status(200).json({
       message: "Deleted & logged out",
@@ -151,7 +151,7 @@ router.put("/update", async (req,res) => {
       });
     }
 
-    console.log(school);
+    //console.log(school);
 
     //Handle update
     const updateResult = await mw.db.editUserInformation(login_id, school, major, contact_info);
@@ -186,7 +186,7 @@ router.put("/prof", async (req,res) => {
       });
     }
 
-    console.log(image);
+    //console.log(image);
 
     //Handle update
     const updateResult = await mw.db.updateUserProfilePicture(login_id, image);

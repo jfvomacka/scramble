@@ -41,7 +41,6 @@ const Signin = () => {
       });
 
       const res_verification = await axios.get(`/api/user/verify/${localState.loginId}`);
-      console.log(res_verification.data.verification);
 
       setLocalState(defaultLocalState);
 
@@ -51,7 +50,6 @@ const Signin = () => {
       else {
         from.pathname = "/verify";
       }
-      console.log(from);
 
       if (res.status === 200) {
 
