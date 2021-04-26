@@ -10,7 +10,6 @@ import { useDispatch } from "react-redux";
 //Import components
 
 //Import containers
-import SignoutButton from "../../containers/SignoutButton";
 
 const Profile = () => {
   const auth = useSelector((state) => state.auth);
@@ -98,10 +97,6 @@ const Profile = () => {
         <p className="is-md has-text-centered-school">MAJOR: {`${profile.major == null ? "" : profile.major}`}</p>
         <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info == null ? "" : profile.contact_info}`}</p>
         
-
-        <div className="buttons">
-          <SignoutButton className="button is-red is-hollow" />
-        </div>
         <button onClick={onClick} className="button is-blue is-hollow">Edit Information</button>
         <button onClick={onClickDelete} className="button is-blue is-hollow">Delete Account (LMAO NERD)</button>
       </div>

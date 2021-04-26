@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Lato&display=swap');
 
 
 body {
   background-color:#ffffff;
   color: #424242;
-  font-family: Avenir;
+  font-family: Helvetica , sans-serif;
+  font-style:sans-serif;
   font-size: 15px;
-  font-weight:700;
+  font-weight:500;
 }
 
 .title {
@@ -18,9 +21,8 @@ body {
 }
 
  .lemons {
-      font-family:Lemongrass Script;
-      src: url("https://use.typekit.net/imm4pkf.css");
-      font-style:sans-serif;
+      font-family: "Cookie";
+      font-weight: 600;
       color:#a91e38;
       font-size:20px;
       text-align:center;
@@ -34,16 +36,15 @@ img {
 
 h3 {
    color:#a91e38;
-   font-family:Transat Text;
-   src: url("https://use.typekit.net/imm4pkf.css");
-   }
+   font-family:"Lato";
+   font-style: sans-serif;
+}
 
 .lemon {
-  font-family:Lemongrass Script;
-  src: url("https://use.typekit.net/imm4pkf.css");
-  font-style:sans-serif;
+  font-family: "Cookie";
+  font-weight: 600;
   color:#f4b53f;
-  font-size:30px;
+  font-size:50px;
   text-align:center;
   margin-top:3px;
 }
@@ -59,7 +60,7 @@ h3 {
 }
 
 heart#img {
-  widht:1%;
+  width:1%;
   height:auto;
 }
 
@@ -73,20 +74,21 @@ button.button {
    border-width: 4px;
    color: #fade53;
    cursor: pointer;
-   font-family: Transat Text;
+   font-family: Lato;
    font-size: 30px;
-   font-weight: 500;
+   font-weight: 600;
    margin-top: 0px;
    margin-bottom: 7px;
    outline: none;
    overflow: visible;
-   padding: 10% 10% 5% 10%;
+   padding: 10px 10px 10px 10px;
    text-align: center;
    transition: background-color 0.1s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
    user-select: none;
    white-space: nowrap;
    z-index:1;
-   }
+}
+
  button.button:hover {
    background-color: #a91e38;
    border-color: #f4b53f;
@@ -132,10 +134,10 @@ button.button .large.hover  {
   display: grid;
   grid-gap:0px;
   margin-top:0%;
-  grid-template-columns: auto auto auto 24% auto auto auto;
+  grid-template-columns: auto auto auto 22% auto auto auto;
   padding:3%;
   text-align:center;
-  grid-template-rows:45% 40%;
+  grid-template-rows:45% 50%;
   align-contet:center;
 }
 

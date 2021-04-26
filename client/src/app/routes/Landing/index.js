@@ -19,7 +19,7 @@ const Landing = () => {
     <div className="title"><img src="https://i.imgur.com/RBQJrIN.png" alt="senior scramble" title="senior scramble"/>
         </div>
         <div className="lemon">
-          let's get cookin'</div>
+          <i>let's get cookin'</i></div>
         <p className="heart"><img src="https://i.imgur.com/xWdyKEU.png"/></p>
        </div>
         <div className="item3">

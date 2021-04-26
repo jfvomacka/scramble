@@ -1,23 +1,17 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 $nav-height: 3rem;
 
 .Navbar {
     background-color: #a91e38;
     color: #fade53;
     font-size: 20px;
-    font-family:Transat Text;
-    font-weight:500;
+    font-family:"Lato";
+    font-weight:600;
 
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 102%;
     z-index: 1;
-
-    img {
-    width:7%;
-    float:left;
-    padding:10px;
-    }
 
     .inner {
         align-items: center;
@@ -28,7 +22,7 @@ $nav-height: 3rem;
 
         a {
             display: inline-block;
-            margin-top:10px;
+            margin-top:0px;
             padding:0px 30px 0px 0px;
         }
 
@@ -40,7 +34,7 @@ $nav-height: 3rem;
     { align-items: center;
         display: flex;
         height: $nav-height;
-        justify-content: left;
+        justify-content: center;
         
 
         a {

@@ -8,10 +8,28 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import SignoutButton from "../SignoutButton";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { signout } from "../../state/authSlice";
 
-const NavbarMain = () => {
+const NavbarMain = (props) => {
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const onClickSignout = async (e) => {
+    try {
+        e.preventDefault();
+  
+        const res = await axios.delete("/auth/local");
+  
+        if (res.status === 200) {
+          dispatch(signout());
+        }
+      } catch (error) {
+        console.error(error);
+      }
+  }
+
   return (
     <nav className="Navbar">
       <div className="inner container is-fixed">
@@ -24,7 +42,10 @@ const NavbarMain = () => {
             <NavLink exact activeClassName="active" className="no-deco" to="/profile">
               PROFILE
             </NavLink>
-            <SignoutButton />
+            <div className="heart">♥ </div>
+            <NavLink exact activeClassName="active" className="no-deco" to="/" onClick={onClickSignout}>
+              SIGN OUT
+            </NavLink>
           </React.Fragment>
         ) : (
           <React.Fragment>
