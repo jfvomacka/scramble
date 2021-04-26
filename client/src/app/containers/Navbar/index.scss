@@ -13,6 +13,12 @@ $nav-height: 3rem;
     width: 100%;
     z-index: 1;
 
+    img {
+    width:7%;
+    float:left;
+    padding:10px;
+    }
+
     .inner {
         align-items: center;
         display: flex;
@@ -22,8 +28,8 @@ $nav-height: 3rem;
 
         a {
             display: inline-block;
-            margin-top:3px;
-            padding:30px
+            margin-top:10px;
+            padding:0px 30px 0px 0px;
         }
 
         a:hover {

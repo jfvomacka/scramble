@@ -71,7 +71,8 @@ const Signin = () => {
   return (
     <div className="Signin">
       <div className="inner container is-fluid">
-        <h2>Sign In</h2>
+     <div className="title">Sign In</div>
+     <div className="lemons">welcome back, hot stuff</div>
         <input
           type="text"
           placeholder="Login Id"
@@ -88,7 +89,9 @@ const Signin = () => {
           onChange={handleChange}
           className="input"
         />
-        <button onClick={onClickSignin} className="button is-blue is-hollow">Sign In</button>
+        <p></p><p></p><p></p><p></p><p></p><p></p>
+        <button onClick={onClickSignin} className="button is-small">SIGN IN
+        </button>
       </div>
     </div>
   );

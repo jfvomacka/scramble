@@ -3,7 +3,7 @@
     .inner {
         padding: {
             top: 10rem;
-            bottom: 10rem;
+            bottom: 20rem;
         }
         .title {
             font: {
@@ -11,6 +11,7 @@
             }
             letter-spacing: 2px;
         }
+
         .subtitle {
             margin: {
                 left: auto;
@@ -18,15 +19,18 @@
                 top: 6rem;
                 bottom: 6rem;
             };
-            max-width: 420px;
+            max-width: 200px;
         }
         .buttons {
             justify-content: center;
+            align-items: center;
+            z-index:1;
+            max-width:100%;
             :not(:last-child) {
-                margin-right: 3rem;
             }
             .button {
-                min-width: 1.2 * 10rem;
+                max-width:100%;
+
             }
         }
     }

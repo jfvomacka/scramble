@@ -16,7 +16,7 @@ const NavbarMain = () => {
     <nav className="Navbar">
       <div className="inner container is-fixed">
         <NavLink exact activeClassName="active" className="no-deco" to="/">
-          HOME
+        HOME
         </NavLink>
         <div className="heart">♥ </div>
         {auth.isAuthenticated ? (
@@ -24,7 +24,6 @@ const NavbarMain = () => {
             <NavLink exact activeClassName="active" className="no-deco" to="/profile">
               PROFILE
             </NavLink>
-             <div className="heart">♥ </div>
             <SignoutButton />
           </React.Fragment>
         ) : (

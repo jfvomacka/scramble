@@ -1,26 +1,43 @@
-@import "./variables";
+
+$breakpoint: (
+  "mobile": 575px,
+  "tablet": 767px,
+  "medium": 991px,
+  "laptop": 1199px,
+  "desktop": 1440px,
+);
+
+$breather: (
+  "mobile": 2.5%,
+  "tablet": 5%,
+  "medium": 7.5%,
+  "laptop": 10%,
+  "desktop": 12.5%,
+  "full": 15%,
+);
+
 .container {
   background-color: transparent;
   &.is-fluid {
     margin: 0;
     max-width: 100%;
-    @media screen and (max-width: map-get($breakpoint, "mobile")) {
-      padding: 0 map-get($breather, "mobile");
+    @media screen and (max-width: 575px) {
+      padding: 0 2.5%;
     }
-    @media screen and (min-width: map-get($breakpoint, "mobile") + 1px) and (max-width: map-get($breakpoint, "tablet")) {
-      padding: 0 map-get($breather, "tablet");
+    @media screen and (min-width: 575px + 1px) and (max-width: 767px) {
+      padding: 0 5%;
     }
-    @media screen and (min-width: map-get($breakpoint, "tablet") + 1px) and (max-width: map-get($breakpoint,"medium")) {
-      padding: 0 map-get($breather, "medium");
+    @media screen and (min-width: 767px + 1px) and (max-width: 991px) {
+      padding: 0 7.5%;
     }
-    @media screen and (min-width: map-get($breakpoint,"medium") + 1px) and (max-width: map-get($breakpoint,"laptop")) {
-      padding: 0 map-get($breather, "laptop");
+    @media screen and (min-width: 991px + 1px) and (max-width: 1199px) {
+      padding: 0 10%;
     }
-    @media screen and (min-width: map-get($breakpoint,"laptop") + 1px) and (max-width: map-get($breakpoint,"desktop")) {
-      padding: 0 map-get($breather, "desktop");
+    @media screen and (min-width: 1199px + 1px) and (max-width: 1440px) {
+      padding: 0 12.5%;
     }
-    @media screen and (min-width: map-get($breakpoint,"desktop") + 1px) {
-      padding: 0 map-get($breather, "full");
+    @media screen and (min-width: 1440px + 1px) {
+      padding: 0 15%;
     }
   }
 
@@ -52,7 +69,7 @@
   align-items: center;
   display: flex;
   padding: {
-    top: map-get($spacing, "xs");
-    bottom: map-get($spacing, "xs");
+    top: 0.5rem;
+    bottom: 0.5rem;
   };
 }

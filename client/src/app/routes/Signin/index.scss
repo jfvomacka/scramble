@@ -6,10 +6,20 @@
         right: auto;
     };
     padding: {
-      top: 4rem;
-      bottom: 4rem;
+      top: 10%;
+      bottom: 25%;
     }
     text-align: center;
     width: max-content;
+    button {
+    border-radius: 20px;
+    font-size: 25px;
+    padding: 8% 8% 5% 8%;
+    margin-top:20px;
+}
+  h2 {
+  text-align:center;
+  }
+
   }
 }

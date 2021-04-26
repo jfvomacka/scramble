@@ -86,7 +86,8 @@ const Signup = () => {
   return (
     <div className="Signup">
       <div className="inner container is-fluid">
-        <h2>Sign Up</h2>
+        <div className="title">Sign Up</div>
+        <div className="lemons">let's do this!!</div>
         <input
           type="text"
           placeholder="First Name"
@@ -128,7 +129,7 @@ const Signup = () => {
           className="input"
         />
         <button onClick={onClickSignup} className="button">
-          Sign Up
+          SIGN UP
         </button>
       </div>
     </div>

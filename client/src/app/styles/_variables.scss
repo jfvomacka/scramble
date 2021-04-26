@@ -1,0 +1,77 @@
+$breakpoint: (
+  "mobile": 575px,
+  "tablet": 767px,
+  "medium": 991px,
+  "laptop": 1199px,
+  "desktop": 1440px,
+);
+
+$breather: (
+  "mobile": 2.5%,
+  "tablet": 5%,
+  "medium": 7.5%,
+  "laptop": 10%,
+  "desktop": 12.5%,
+  "full": 15%,
+);
+
+<<<<<<< HEAD
+=======
+$color: (
+  "light": #f5f7f7,
+  "dark": #333333,
+  "light-grey": #e6e6e6,
+  "grey": #86868b,
+  "black": #1d1d1f,
+  "violet": #240a40,
+  "indigo": #4f69c6,
+  "blue": #1b9cfc,
+  "green": #436a0d,
+  "orange": #ff681f,
+  "red": #ef2f25,
+  "dark red": #a91e38,
+  "turquoise": #25ccf7,
+  "pale yellow": #fff9de,
+  "dark yellow": #f4b53f,
+  "yellow": #fade53,
+);
+>>>>>>> 34b801cf1cde77b567d6ac0534f8037a481072e0
+
+$size: (
+  "xxxs": 0.25rem,
+  "xxs": 0.375rem,
+  "xs": 0.5rem,
+  "sm": 0.75rem,
+  "md": 0.875rem,
+  "rem": 1rem,
+  "lg": 1.25rem,
+  "xl": 1.5rem,
+  "xxl": 2rem,
+  "xxxl": 2.5rem,
+  "xxxxl": 3rem,
+  "huge": 4.5em,
+);
+
+$spacing: (
+  "xs": 0.5rem,
+  "sm": 3rem,
+  "md": 4rem,
+  "lg": 6rem,
+  "xl": 10rem
+);
+
+$text-alignment: (
+  "left": left,
+  "right": right,
+  "centered": center,
+  "justified": justify,
+);
+
+$style: (
+"bold": bold,
+"italic": italic,
+"black": black,
+);
+
+
+
