@@ -117,6 +117,7 @@ const Signup = () => {
           onChange={handleChange}
           className="input"
         />
+        <p>By signing up, you agree to be bound by our TERMS OF SERVICE</p> 
         <button onClick={onClickSignup} className="button">
           SIGN UP
         </button>
