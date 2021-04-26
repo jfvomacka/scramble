@@ -85,20 +85,23 @@ const Profile = () => {
   */
 
   return (
-    <div className="Private">
+    <div className="Profile">
       <div className="inner container is-fixed">
-        <h2 className="title has-text-centered">PROFILE</h2>
-        <p className="subtitle has-text-centered">
+        <div className="title">PROFILE</div>
+        <div className="lemons">
           Hey there, sexy ;)
-        </p>
-        <p className="is-md has-text-centered">{`${profile.first_name} ${profile.last_name}`}</p>
+        </div>
+        <div className="name"><b>{`${profile.first_name == null ? "" : profile.first_name.toUpperCase()} ${profile.last_name == null ? "" : profile.last_name.toUpperCase()}`}</b></div>
 
-        <p className="is-md has-text-centered-school">SCHOOL: {`${profile.school == null ? "" : profile.school}`}</p>
-        <p className="is-md has-text-centered-school">MAJOR: {`${profile.major == null ? "" : profile.major}`}</p>
-        <p className="is-md has-text-centered-school">CONTACT INFO: {`${profile.contact_info == null ? "" : profile.contact_info}`}</p>
+        <h2>SCHOOL: {`${profile.school == null ? "" : profile.school}`}</h2>
+        <h2>MAJOR: {`${profile.major == null ? "" : profile.major}`}</h2>
+        <h2>CONTACT INFO: {`${profile.contact_info == null ? "" : profile.contact_info}`}</h2>
         
         <button onClick={onClick} className="button is-blue is-hollow">Edit Information</button>
-        <button onClick={onClickDelete} className="button is-blue is-hollow">Delete Account (LMAO NERD)</button>
+        <br></br>
+        
+        <button onClick={onClickDelete} className="button is-blue is-hollow">Delete Account</button>
+        <div className="nerd"> <b>(LMAO NERD)</b></div>
       </div>
     </div>
   );

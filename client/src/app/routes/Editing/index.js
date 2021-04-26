@@ -110,7 +110,8 @@ const Editing = () => {
           className="input"
         />
 
-        <input
+        <textarea
+          rows="4" cols="30"
           type="text"
           placeholder="Contact Information"
           name="contact"
@@ -118,7 +119,7 @@ const Editing = () => {
           onChange={handleChange}
           className="input"
         />
-        <button onClick={onClickSave} className="button is-blue is-hollow">Save Changes</button>
+        <button onClick={onClickSave} className="button is-blue is-hollow">SAVE CHANGES</button>
       </div>
     </div>
   );

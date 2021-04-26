@@ -5,20 +5,31 @@ import "./index.scss";
 const Footer = () => {
     return (
         <footer className="Footer">
+
+            <div className="inner container is-fixed">
+                <div className="lemons">
+                    Matches coming soon ;)
+                </div>
+            </div>
+
             <div className="inner container is-fixed">
                 <React.Fragment>
                     <NavLink exact activeClassName="active" className="no-deco" to="/tos">
                         terms of service
                     </NavLink>
                     <NavLink exact activeClassName="active" className="no-deco" to="/about">
-                        any questions?
+                        FAQ
                     </NavLink>
                     <NavLink exact activeClassName="active" className="no-deco" to="/privacy">
                         privacy policy
                     </NavLink>
                 </React.Fragment>
+                
+            </div>
+            <div className="inner container is-fixed">
                 <p>© SeniorSCramble 2021 </p>
             </div>
+            
         </footer>
     )
 }

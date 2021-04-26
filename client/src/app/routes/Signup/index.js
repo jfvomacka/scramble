@@ -75,7 +75,7 @@ const Signup = () => {
   return (
     <div className="Signup">
       <div className="inner container is-fluid">
-        <div className="title">Sign Up</div>
+        <div className="title">SIGN UP</div>
         <div className="lemons">let's do this!!</div>
         <input
           type="text"
@@ -117,7 +117,7 @@ const Signup = () => {
           onChange={handleChange}
           className="input"
         />
-        <p>By signing up, you agree to be bound by our TERMS OF SERVICE</p> 
+        <p>By signing up, you agree to be bound by our <a href="/tos"><b>TERMS OF SERVICE</b></a> </p> 
         <button onClick={onClickSignup} className="button">
           SIGN UP
         </button>

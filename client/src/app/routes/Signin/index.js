@@ -71,7 +71,7 @@ const Signin = () => {
   return (
     <div className="Signin">
       <div className="inner container is-fluid">
-     <div className="title">Sign In</div>
+     <div className="title">SIGN IN</div>
      <div className="lemons">welcome back, hot stuff</div>
         <input
           type="text"

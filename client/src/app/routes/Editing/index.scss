@@ -1,5 +1,5 @@
 
-.Signin {
+.Editing {
   .inner {
     margin: {
         left: auto;
@@ -7,9 +7,21 @@
     };
     padding: {
       top: 4rem;
-      bottom: 4rem;
+      bottom: 30%;
     }
     text-align: center;
     width: max-content;
+
+    button {
+      border-radius: 20px;
+      font-size: 30px;
+      padding: 10px 10px 10px 10px;
+      margin-top:20px;
   }
+
+  #contact {
+    text-align: top;
+    padding-bottom: 80px;
+  }
+}
 }

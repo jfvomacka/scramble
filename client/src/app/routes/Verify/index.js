@@ -62,8 +62,8 @@ const Verify = () => {
   return (
     <div className="Signin">
       <div className="inner container is-fluid">
-        <h2>Verify your account</h2>
-        <body>Check your email ;)</body>
+        <div className="title">VERIFY YOUR ACCOUNT</div>
+        <div className="lemons">Check your email ;)</div>
         <input
           type="text"
           placeholder="Verification code"
@@ -72,7 +72,7 @@ const Verify = () => {
           onChange={handleChange}
           className="input"
         />
-        <button onClick={onClickSignin} className="button is-blue is-hollow">Sign In</button>
+        <button onClick={onClickSignin} className="button is-blue is-hollow">VERIFY</button>
       </div>
     </div>
   );
