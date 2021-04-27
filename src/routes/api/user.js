@@ -12,12 +12,19 @@ router.post("/", async (req, res) => {
   try {
     const { login_id, password, first_name, last_name, email } = req.body;
 
-    //Check and notify if user already exists
+    //Check and notify if user with username/email already exists
     const existingUser = await mw.db.getUserByLoginId(login_id);
+    const existingEmail = await mw.db.getUserByEmail(email);
 
     if (existingUser) {
       return res.status(409).json({
         message: "Login id already in use",
+      });
+    }
+
+    if (existingEmail) {
+      return res.status(409).json({
+        message: "Email address already in use",
       });
     }
 

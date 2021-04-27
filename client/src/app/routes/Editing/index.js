@@ -23,11 +23,23 @@ const Editing = () => {
   };
 
   const [localState, setLocalState] = useState(defaultLocalState);
+  const [profile, setProfile] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
 
       const res_verification = await axios.get(`/api/user/verify/${auth.user.login_id}`);
+
+      const prof = await axios.get(`/api/user/profile/${auth.user.login_id}`);
+      setProfile(prof.data.profile);
+
+      var schoolMenu = document.getElementById('school');
+      for(var i, j = 0; i = schoolMenu.options[j]; j++) {
+          if(i.value == prof.data.profile.school) {
+              schoolMenu.selectedIndex = j;
+              break;
+          }
+      }
 
       if(!res_verification.data.verification) {
         history.replace("/verify");
@@ -75,7 +87,7 @@ const Editing = () => {
 
         <label form="schools">SCHOOL:</label>
         <select name="school" id="school" onChange={handleChange}>
-          <option value="">Select a School! </option>
+          <option value="" selected disabled hidden>Select a School! </option>
           <option value="Dornsife College of Letters, Arts and Sciences">Dornsife College of Letters, Arts and Sciences</option>
           <option value="Leventhal School of Accounting">Leventhal School of Accounting</option>
           <option value="School of Architecture">School of Architecture</option>
@@ -103,7 +115,7 @@ const Editing = () => {
 
         <input
           type="text"
-          placeholder="Major"
+          placeholder={profile.major === "" ? "Contact info" : profile.major}
           name="major"
           value={localState.major}
           onChange={handleChange}
@@ -113,7 +125,7 @@ const Editing = () => {
         <textarea
           rows="4" cols="30"
           type="text"
-          placeholder="Contact Information"
+          placeholder={profile.contact_info === "" ? "Contact info" : profile.contact_info}
           name="contact"
           value={localState.contact}
           onChange={handleChange}

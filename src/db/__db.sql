@@ -20,7 +20,7 @@ CREATE TABLE app_user
     verification INT NOT NULL,
     verified BOOL NOT NULL,
 
-    photo BYTEA,
+    photo_id VARCHAR(255),
     major VARCHAR(255),
     school VARCHAR(255),
     contact_info VARCHAR(255)
