@@ -6,11 +6,8 @@ const Footer = () => {
     return (
         <footer className="Footer">
 
-            <div className="inner container is-fixed">
-                <div className="lemons">
-                    Matches coming soon ;)
-                </div>
-            </div>
+           
+      
 
             <div className="inner container is-fixed">
                 <React.Fragment>

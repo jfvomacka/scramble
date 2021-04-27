@@ -20,7 +20,8 @@ const Landing = () => {
         </div>
         <div className="lemon">
           <i>let's get cookin'</i></div>
-        <p className="heart"><img src="https://i.imgur.com/xWdyKEU.png"/></p>
+        <div className="heart"><img src="https://i.imgur.com/xWdyKEU.png"/></div>
+      <div className="matches"> matches coming soon <br></br>;)</div>
        </div>
         <div className="item3">
         <img src="https://i.imgur.com/Txvfn5h.png"/>
@@ -29,6 +30,7 @@ const Landing = () => {
         <div className="item5"></div>
 
         <div className="item6">
+        <p></p>
         {auth.isAuthenticated ? (
           <div className="buttons">
             <Link to="/profile">
@@ -45,7 +47,7 @@ const Landing = () => {
               </button>
             </Link>
             </div>
-        )}  </div>
+        )}   </div>
         <div className="item7"></div>
 <div className="item8"></div>
         </div> 

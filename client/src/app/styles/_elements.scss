@@ -21,6 +21,14 @@ body {
   padding:10px 0px 0px 0px;
 }
 
+.matches {
+        font-family: "Lato";
+        color:#ef2f25;
+        font-weight:600;
+        font-size:25px;
+        text-align:center;
+        }
+
  .lemons {
       font-family: "Cookie";
       font-weight: 600;
@@ -80,8 +88,8 @@ h3 {
 heart#img {
   width:1%;
   height:auto;
+  padding-bottom:0%;
 }
-
 
 
 button.button {
@@ -95,6 +103,8 @@ button.button {
    font-family: Lato;
    font-size: 30px;
    font-weight: 600;
+   display:inline-block;
+   max-width:100%;
    margin-top: 0px;
    margin-bottom: 7px;
    outline: none;
@@ -174,7 +184,7 @@ textarea {
   grid-template-columns: auto auto auto 22% auto auto auto;
   padding:3%;
   text-align:center;
-  grid-template-rows:45% 50%;
+  grid-template-rows:55% 45%;
   align-contet:center;
 }
 
@@ -202,16 +212,21 @@ grid-row:1;
   width:175%;
   max-height:400%;
 float:right;
+position:relative;
+  z-index:1;
 }
 
 .item1 img {
   width:175%;
   max-height:400%;
   float:left;
+  position:relative;
+  z-index:1;
 }
 .item2 img {
   width:100%;
   max-height:160%;
+
 
 }
 
@@ -220,6 +235,8 @@ float:right;
   text-align:center;
   item-align:center;
 }
+
+
 
 
 
