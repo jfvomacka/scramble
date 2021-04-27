@@ -21,6 +21,14 @@ const Landing = () => {
         <div className="lemon">
           <i>let's get cookin'</i></div>
         <div className="heart"><img src="https://i.imgur.com/xWdyKEU.png"/></div>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
       <div className="matches"> matches coming soon <br></br>;)</div>
        </div>
         <div className="item3">
