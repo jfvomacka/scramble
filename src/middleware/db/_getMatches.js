@@ -7,8 +7,28 @@ module.exports = async (login_id_FROM) => {
       [login_id_FROM, login_id_FROM]
     );
 
+    let matches = [];
+
+    for(var i = 0; i < newMatchResult.rowCount; i++) {
+      
+      let login_id = newMatchResult.rows[i].user1 === login_id_FROM ? newMatchResult.rows[i].user2 : newMatchResult.rows[i].user1;
+
+      const newMatch = await pool.query(
+        `SELECT * FROM app_user WHERE login_id = $1`,
+        [login_id]
+      );
+      
+      const match = {
+        first_name: newMatch.rows[0].first_name,
+        last_name: newMatch.rows[0].last_name,
+        school: newMatch.rows[0].school,
+        major: newMatch.rows[0].major,
+        contact: newMatch.rows[0].contact_info
+      };
+      matches.push(match);
+    }
     
-    return newMatchResult;
+    return matches;
 
   } catch (error) {
     throw error;

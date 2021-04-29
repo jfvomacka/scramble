@@ -20,8 +20,8 @@ const Privacy = React.lazy(() => import("./app/routes/Privacy"));
 const Editing = React.lazy(() => import("./app/routes/Editing"));
 const Verify = React.lazy(() => import("./app/routes/Verify"));
 const Delete = React.lazy(() => import("./app/routes/Delete"));
-//const Dashboard = React.lazy(() => import("./app/routes/Dashboard"));
-//const Search = React.lazy(() => import("./app/routes/Search"));
+const Matches = React.lazy(() => import("./app/routes/Matches"));
+const Search = React.lazy(() => import("./app/routes/Search"));
 const Reset = React.lazy(() => import("./app/routes/Reset"));
 
 const App = (props) => {
@@ -55,6 +55,8 @@ const App = (props) => {
                 <PrivateRoute exact path="/editing" {...props} component={Editing} />
                 <PrivateRoute exact path="/verify" {...props} component={Verify} />
                 <PrivateRoute exact path="/delete" {...props} component={Delete} />
+                <PrivateRoute exact path="/search" {...props} component={Search} />
+                <PrivateRoute exact path="/matches" {...props} component={Matches} />
 
               </Switch>
           </Suspense>

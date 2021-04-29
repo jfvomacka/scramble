@@ -1,0 +1,43 @@
+
+
+.Landing {
+    .inner {
+        padding: {
+            top: 10rem;
+            bottom: 10rem;
+        }
+        
+
+        .title {
+            font: {
+                weight: 500;
+            }
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            margin: {
+                left: auto;
+                right: auto;
+                top: 6rem;
+                bottom: 6rem;
+            };
+            max-width: 200px;
+        }
+        .buttons {
+            justify-content: center;
+            align-items: center;
+            z-index:1;
+            max-width:100%;
+            :not(:last-child) {
+            }
+            .button {
+                max-width:100%;
+
+
+
+
+            }
+        }
+    }
+}

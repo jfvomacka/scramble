@@ -8,8 +8,8 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       // match requests are made TO one user FROM another user
       // TO = "target user," FROM = user that makes request
       
-      `SELECT * FROM app_request WHERE login_id_TO = $1 LIMIT 1 `,
-      [login_id_FROM]
+      `SELECT * FROM app_request WHERE login_id_TO = $1 AND login_id_FROM = $2 LIMIT 1 `,
+      [login_id_FROM, login_id_TO]
     );
 
     const existingMatch = await pool.query(
@@ -17,14 +17,15 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       [login_id_FROM, login_id_TO, login_id_TO, login_id_FROM]
     )
 
-    console.log(newMatchResult.rows.length);
+    console.log(newMatchResult);
+    console.log(existingMatch);
 
     if(newMatchResult.rows.length > 0 && existingMatch.rows.length == 0) {
 
       // TO has already made a request to FROM: match now exists
       const deleteMatchedRequest = await pool.query(
-        `DELETE FROM app_request WHERE login_id_TO = $1`,
-        [login_id_FROM]
+        `DELETE FROM app_request WHERE login_id_TO = $1 AND login_id_FROM = $2`,
+        [login_id_FROM, login_id_TO]
       );
 
       // Add to match table

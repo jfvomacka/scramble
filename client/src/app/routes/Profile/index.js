@@ -1,11 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router";
+import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import "./index.scss";
-
-import { useDispatch } from "react-redux";
 
 //Import components
 
