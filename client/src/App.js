@@ -22,6 +22,7 @@ const Verify = React.lazy(() => import("./app/routes/Verify"));
 const Delete = React.lazy(() => import("./app/routes/Delete"));
 //const Dashboard = React.lazy(() => import("./app/routes/Dashboard"));
 //const Search = React.lazy(() => import("./app/routes/Search"));
+const Reset = React.lazy(() => import("./app/routes/Reset"));
 
 const App = (props) => {
   //Check and update authentication status
@@ -49,6 +50,7 @@ const App = (props) => {
                 <Route exact path="/tos" {...props} component={TOS} />
                 <Route exact path="/about" {...props} component={About} />
                 <Route exact path="/privacy" {...props} component={Privacy} />
+                <Route exact path="/reset" {...props} component={Reset} />
                 <PrivateRoute exact path="/profile" {...props} component={Profile} />
                 <PrivateRoute exact path="/editing" {...props} component={Editing} />
                 <PrivateRoute exact path="/verify" {...props} component={Verify} />

@@ -177,8 +177,10 @@ router.put("/update", async (req,res) => {
   }
 });
 
+/*
+
 //@route    PUT api/user/prof
-//@desc     Update a user's  profile picture with a BLOB
+//@desc     Update a user's profile picture with a BLOB
 //@access   private
 router.put("/prof", async (req,res) => {
   try {
@@ -211,6 +213,8 @@ router.put("/prof", async (req,res) => {
     });
   }
 });
+
+*/
 
 //@route    GET api/user/me
 //@desc     Get the details of an existing user
@@ -245,6 +249,142 @@ router.get("/profile/:login_id", async (req,res) => {
       profile: user
     });
     
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/email
+//@desc     Get the email on file for an existing user & create a reset code
+//@access   private
+router.get("/email/:login_id", async (req,res) => {
+  try {
+    const login_id = req.params.login_id;
+
+    //Get user profile
+    const user = await mw.db.getUserProfile(login_id);
+
+    if (!user) {
+      return res.status(409).json({
+        message: "Login id could not be found",
+      });
+    }
+
+    // Get new 8-digit reset code (between 10000000 and 99999999)
+    const reset = Math.floor(Math.random() * Math.pow(10, 8)) + Math.pow(10, 7);
+
+    //Insert new reset code to the table
+    const resetCodeResult = await mw.db.addResetCode(login_id, reset);
+
+    // Send reset email
+    const mail = function(recipient, subject, message) {
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAILPASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: recipient,
+        subject,
+        text: message,
+      };
+
+      transporter.sendMail(mailOptions), (error, info) => {
+        if(error) {
+          console.log(error);
+          return error;
+        }
+        //console.log(`Email sent: $(info.response}`);
+        return 200;
+      };
+    };
+
+    const subject = "Senior SCramble Password Reset Code";
+    const recipient = user.email;
+    const message = "Your Senior SCramble reset code is: " + reset;
+    mail(recipient, subject, message);
+
+    return res.status(200).json({
+      message: "User email retrieved",
+      email: user.email,
+      resetCode: reset
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    GET api/user/pwreset
+//@desc     Get the reset code for an existing user
+//@access   private
+router.get("/pwreset/:login_id", async (req,res) => {
+  try {
+    const login_id = req.params.login_id;
+
+    //Handle match request
+    const user = await mw.db.getUserProfile(login_id);
+
+    if (!user) {
+      return res.status(409).json({
+        message: "Login id could not be found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "User reset code retrieved",
+      resetCode: user.reset_code,
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
+//@route    PUT api/user/password
+//@desc     Update a user's password after a reset
+//@access   private
+router.put("/password", async (req,res) => {
+  try {
+    const { login_id, password } = req.body;
+
+    //Check and notify if target user exists
+    const user = await mw.db.getUserByLoginId(login_id);
+
+    if (!user) {
+      return res.status(409).json({
+        message: "Login id could not be found",
+      });
+    }
+
+    //Encrypt password
+    const salt = await bcrypt.genSalt(10);
+    const hashed_password = await bcrypt.hash(password, salt);
+
+    //Handle update
+    const updateResult = await mw.db.updatePassword(login_id, hashed_password);
+
+    return res.status(200).json({
+      message: "Password successfully updated",
+      updatedInfo: updateResult
+    });
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({

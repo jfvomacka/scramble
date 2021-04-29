@@ -10,7 +10,7 @@ const FAQ = () => {
         <div className="title">FAQ</div>
         <p>&nbsp;</p>
         <p>Senior SCramble was created by USC students for USC students.
-        You can create an account until DATE HERE and see your matches starting DATE HERE. </p>
+        You can create an account now, and start matching soon... </p>
         <div className="about"><i><p>Still crushing on that cutie from your freshman dorm?</p>
         <p>That one in your GE you never got a chance to hang out with? </p>
         <p>What about the person in your Zoom lecture whose DM’s you’re too scared to slide into?</p>
@@ -34,8 +34,8 @@ const FAQ = () => {
         send a match to the senior whose Zoom video you pin!  </p>
         <p>&nbsp;</p>
         <h3>If I match with someone and they don’t match with me back, will they know?</h3>
-        <p> Senior Scramble is a fun way for graduating seniors to make some new connections
-          before graduation, whether that means making a new friend or something more ;) </p>
+        <p> They won’t! Senior Scramble is completely anonymous unless you and another senior have both matched. This way you can send matches
+        without the fear of rejection, but it also means you won’t know who sends you a match unless the feeling is mutual.</p>
         <p>&nbsp;</p>
         <h3>I matched with someone! Now what?</h3>
         <p> Reach out to them! After you’ve matched with someone you’ll receive their preferred 

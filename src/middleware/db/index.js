@@ -1,5 +1,6 @@
 module.exports = {
     addNewUser: require("./_addNewUser"),
+    addResetCode: require("./_addResetCode"),
     deleteUser: require("./_deleteUser"),
     verifyUser: require("./_verifyUser"),
     getUserProfile: require("./_getUserProfile"),
@@ -11,5 +12,6 @@ module.exports = {
     getMatches: require("./_getMatches"),
     searchByName: require ("./_searchByName"),
     searchBySchool: require ("./_searchBySchool"),
-    searchByMajor: require ("./_searchByMajor")
+    searchByMajor: require ("./_searchByMajor"),
+    updatePassword: require("./_updatePassword")
 }

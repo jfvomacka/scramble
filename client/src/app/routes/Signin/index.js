@@ -3,6 +3,7 @@ import { useHistory, useLocation } from "react-router";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { signin } from "../../state/authSlice";
+import { NavLink } from "react-router-dom";
 
 import "./index.scss";
 
@@ -90,6 +91,12 @@ const Signin = () => {
         <p></p><p></p><p></p><p></p><p></p><p></p>
         <button onClick={onClickSignin} className="button is-small">SIGN IN
         </button>
+        <p></p><p></p>
+        <React.Fragment>
+          <NavLink exact activeClassName="active" className="no-deco" to="/reset">
+            Forgot your password?
+        </NavLink>
+          </React.Fragment>
       </div>
     </div>
   );
