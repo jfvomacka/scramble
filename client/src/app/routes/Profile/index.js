@@ -1,9 +1,11 @@
-import React from "react";
+import { React, useRef } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import "./index.scss";
+import uploadcare from "uploadcare-widget"
+import { Widget } from "@uploadcare/react-widget"
 
 //Import components
 
@@ -28,8 +30,6 @@ const Profile = () => {
       }
 
       const res = await axios.get(`/api/user/profile/${auth.user.login_id}`);
-      //console.log(res);
-      //uploadedImage.current = res.data.profile.photo;
       setProfile(res.data.profile);
     }
     fetchData();
@@ -58,29 +58,23 @@ const Profile = () => {
       }
   }
 
-  /*
-  const uploadedImage = React.useRef(null);
-  const imageUploader = React.useRef(null);
+  var imglink = "https://ucarecdn.com/" + profile.photo_id;
 
-  const handleImageUpload = async (e) => {
-    const [file] = e.target.files;
-    if (file) {
-      const reader = new FileReader();
-      const { current } = profile.photo;
-      
-      reader.onload = e => {
-        current.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-      
-      const res = await axios.put("/api/user/prof", {
-        login_id: auth.user.login_id,
-        image: current.src
-      });
+  const handleImageUpload = (fileInfo => { 
 
-    }
-  };
-  */
+    imglink = fileInfo.originalUrl;
+
+    console.log(fileInfo);
+
+    const photo_id = fileInfo.uuid + "/" + fileInfo.cdnUrlModifiers + "/" + fileInfo.name;
+    const res = axios.put("/api/user/prof", {
+      login_id: auth.user.login_id,
+      uuid: photo_id
+    });
+
+    window.alert("Upload succeeded! Refresh the page to see your beautiful face ;)");
+  })
+
 
   return (
     <div className="Profile">
@@ -89,6 +83,23 @@ const Profile = () => {
         <div className="lemons">
           Hey there, sexy ;)
         </div>
+
+        <div className="profile-pic-div">
+        <img src={imglink} alt="" />
+          <Widget type="hidden"
+            public-key="f5699efd930d5eda3c90"
+            role="uploadcare-uploader"
+            id="profile-pic"
+            tabs="file camera"
+            crop="300x300"
+            previewStep
+            imagesOnly
+            store="true"
+            clearable
+            onChange={info => handleImageUpload(info)}
+          />
+        </div>
+
         <div className="name"><b>{`${profile.first_name == null ? "" : profile.first_name.toUpperCase()} ${profile.last_name == null ? "" : profile.last_name.toUpperCase()}`}</b></div>
 
         <h2>SCHOOL: {`${profile.school == null ? "" : profile.school}`}</h2>

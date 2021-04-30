@@ -177,14 +177,12 @@ router.put("/update", async (req,res) => {
   }
 });
 
-/*
-
 //@route    PUT api/user/prof
-//@desc     Update a user's profile picture with a BLOB
+//@desc     Update a user's profile picture with an UploadCare UUID
 //@access   private
 router.put("/prof", async (req,res) => {
   try {
-    const { login_id, image } = req.body;
+    const { login_id, uuid } = req.body;
 
     //Check and notify if target user exists
     const existingUser = await mw.db.getUserByLoginId(login_id);
@@ -195,10 +193,8 @@ router.put("/prof", async (req,res) => {
       });
     }
 
-    //console.log(image);
-
     //Handle update
-    const updateResult = await mw.db.updateUserProfilePicture(login_id, image);
+    const updateResult = await mw.db.updateUserProfilePicture(login_id, uuid);
 
     return res.status(200).json({
       message: "Information successfully updated",
@@ -213,8 +209,6 @@ router.put("/prof", async (req,res) => {
     });
   }
 });
-
-*/
 
 //@route    GET api/user/me
 //@desc     Get the details of an existing user
@@ -490,7 +484,6 @@ router.post("/match", async (req,res) => {
       });
     }
 
-
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -528,12 +521,18 @@ router.get("/match/:login_id", async (req,res) => {
 //@route    GET api/user/searchName
 //@desc     Search for users by name
 //@access   private
-router.get("/searchName/:searchTerm", async (req,res) => {
+router.get("/searchName/:firstName/:lastName", async (req,res) => {
   try {
-    const name = req.params.searchTerm;
+    const firstName = req.params.firstName;
+    var lastName = req.params.lastName;
+
+    // Flexibility in names
+    if(lastName === "undefined") {
+      lastName = "*"
+    }
 
     //Handle match request
-    const newSearchResult = await mw.db.searchByName(name);
+    const newSearchResult = await mw.db.searchByName(firstName, lastName);
 
     return res.status(200).json({
       message: "Results returned",

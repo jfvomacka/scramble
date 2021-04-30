@@ -12,8 +12,6 @@ const Verify = () => {
     from: { pathname: process.env.REACT_APP_DEFAULT_LOGIN_REDIRECT },
   };
 
-  const auth = useSelector((state) => state.auth);
-
   const defaultLocalState = {
     loginId: "",
     resetCode: "",

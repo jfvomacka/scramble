@@ -22,11 +22,14 @@ const Search = () => {
     // do the backend request for search results
 
     if (searchType === "Name") {
-      res = await axios.get(`/api/user/searchName/${searchTerm}`);
+
+      var terms = searchTerm.split(" ");
+      res = await axios.get(`/api/user/searchName/${terms[0]}/${terms[1]}`);
+      
     }
-    else if (searchType === "School") {
-      res = await axios.get(`/api/user/searchSchool/${searchTerm}`);
-    }
+    //else if (searchType === "School") {
+      //res = await axios.get(`/api/user/searchSchool/${searchTerm}`);
+    //}
     else if (searchType === "Major") {
       res = await axios.get(`/api/user/searchMajor/${searchTerm}`);
     }
@@ -64,14 +67,14 @@ const Search = () => {
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
           <option value="Name">Name</option>
           <option value="Major">Major</option>
-          <option value="School">School</option>
         </select>
         {searchResults.map((profile) => (
           <>
-          <div>{profile.first_name} {profile.last_name}</div>
-          <div>{profile.major} </div>
-          <div>{profile.school} </div>
-          <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Request</button>
+            <img src={`https://ucarecdn.com/${profile.photo_id}`} width="30" height="300"/>
+            <div>{profile.first_name} {profile.last_name}</div>
+            <div>{profile.major} </div>
+            <div>{profile.school} </div>
+            <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Request</button>
           </>
         ))}
       </div>
