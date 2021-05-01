@@ -29,7 +29,7 @@ const Landing = () => {
         <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>&nbsp;</p>
-      <div className="matches"> matches coming soon <br></br>;)</div>
+      <div className="matches"> matches open now! <br></br>;)</div>
        </div>
         <div className="item3">
         <img src="https://i.imgur.com/Txvfn5h.png"/>

@@ -10,7 +10,7 @@ const FAQ = () => {
         <div className="title">FAQ</div>
         <p>&nbsp;</p>
         <p>Senior SCramble was created by USC students for USC students.
-        You can create an account now, and start matching soon... </p>
+        You can create an account and start matching now! </p>
         <div className="about"><i><p>Still crushing on that cutie from your freshman dorm?</p>
         <p>That one in your GE you never got a chance to hang out with? </p>
         <p>What about the person in your Zoom lecture whose DM’s you’re too scared to slide into?</p>
