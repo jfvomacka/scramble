@@ -39,6 +39,14 @@ const NavbarMain = (props) => {
         <div className="heart">♥ </div>
         {auth.isAuthenticated ? (
           <React.Fragment>
+            <NavLink exact activeClassName="active" className="no-deco" to="/search">
+              SEARCH
+            </NavLink>
+            <div className="heart">♥ </div>
+            <NavLink exact activeClassName="active" className="no-deco" to="/matches">
+              MATCHES
+            </NavLink>
+            <div className="heart">♥ </div>
             <NavLink exact activeClassName="active" className="no-deco" to="/profile">
               PROFILE
             </NavLink>

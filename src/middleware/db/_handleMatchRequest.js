@@ -3,7 +3,7 @@ const {pool} = require("../../db");
 module.exports = async (login_id_FROM, login_id_TO) => {
   try {
 
-    const newMatchResult = await pool.query(
+    const existingRequest = await pool.query(
       
       // match requests are made TO one user FROM another user
       // TO = "target user," FROM = user that makes request
@@ -17,10 +17,10 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       [login_id_FROM, login_id_TO, login_id_TO, login_id_FROM]
     )
 
-    console.log(newMatchResult);
+    console.log(existingRequest);
     console.log(existingMatch);
 
-    if(newMatchResult.rows.length > 0 && existingMatch.rows.length == 0) {
+    if(existingRequest.rows.length > 0 && existingMatch.rows.length == 0) {
 
       // TO has already made a request to FROM: match now exists
       const deleteMatchedRequest = await pool.query(
@@ -37,8 +37,19 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       // Return something to signal that the match has been made?
       return true;
     }
+
+    const existingRequestReverse = await pool.query(
+      
+      // match requests are made TO one user FROM another user
+      // TO = "target user," FROM = user that makes request
+      
+      `SELECT * FROM app_request WHERE login_id_TO = $2 AND login_id_FROM = $1 LIMIT 1 `,
+      [login_id_FROM, login_id_TO]
+    );
+
+    console.log(existingRequestReverse);
     
-    if(existingMatch.rows.length == 0) {
+    if(existingMatch.rows.length == 0 && existingRequestReverse.rows.length == 0) {
       // Match does not currently exist: create new outgoing request
       const newMatchRequest = await pool.query(
         `INSERT INTO app_request (login_id_FROM, login_id_TO) VALUES ($1, $2)`,

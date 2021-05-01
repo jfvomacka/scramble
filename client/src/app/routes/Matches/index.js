@@ -31,7 +31,7 @@ const Matches = () => {
         </p>
         {matchResults.map((profile) => (
           <>
-          <img src={`https://ucarecdn.com/${profile.photo_id}`} width="30" height="300"/>
+          <img src={`https://ucarecdn.com/${profile.photo_id}`} width="300" height="300"/>
           <div>NAME: {profile.first_name} {profile.last_name}</div>
           <div>SCHOOL: {profile.school} </div>
           <div>MAJOR: {profile.major} </div>

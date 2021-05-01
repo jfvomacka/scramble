@@ -47,6 +47,8 @@ const Search = () => {
     if (res.status !== 200) {
       console.log("match error");
     }
+
+    window.alert(res.data.message);
   };
 
   return (
@@ -71,9 +73,9 @@ const Search = () => {
         {searchResults.map((profile) => (
           <>
             <img src={`https://ucarecdn.com/${profile.photo_id}`} width="30" height="300"/>
-            <div>{profile.first_name} {profile.last_name}</div>
-            <div>{profile.major} </div>
-            <div>{profile.school} </div>
+            <div>NAME: {profile.first_name} {profile.last_name}</div>
+            <div>SCHOOL: {profile.school} </div>
+            <div>MAJOR: {profile.major} </div>
             <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Request</button>
           </>
         ))}

@@ -475,12 +475,14 @@ router.post("/match", async (req,res) => {
     // Thinking these can return true for sucessful match, false for one-way?
     if(newMatchResult) {
       return res.status(200).json({
-        message: "New match created!",
+        message: "It's a match Check your Matches page to see where this connection takes you...",
+        match: newMatchResult
       });
     }
     else {
       return res.status(200).json({
-        message: "Awaiting completion of match.",
+        message: "New request made! As Tom Petty once said, the waiting is the hardest part...",
+        match: newMatchResult
       });
     }
 
