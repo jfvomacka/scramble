@@ -54,7 +54,9 @@ const Search = () => {
   return (
     <div className="Search">
       <div className="inner container is-fixed">
-        <h2 className="title has-text-centered">Search</h2>
+        <div className="title has-text-centered">SEARCH</div>
+        <p>Search for users by name or by major (searching by school is coming soon). Senior Scramble is
+          anonymous unless the match is mutual, so your crushes won’t know you sent them a match unless they send you one back ;)</p>
         <input
           type="text"
           placeholder="Search for potential matches!"
@@ -63,20 +65,40 @@ const Search = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="input"
         />
-        <div className="buttons">
-          <button className="button is-red is-hollow" onClick={grabSearchResults}>Search</button>
-        </div>
+        <div className="find">
+          <div className="lemons">Search by:</div>
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
           <option value="Name">Name</option>
           <option value="Major">Major</option>
         </select>
+        </div>
+        <div className="buttons">
+          <button className="button is-red is-hollow" onClick={grabSearchResults}>SEARCH</button>
+        </div>
         {searchResults.map((profile) => (
           <>
-            <img src={`https://ucarecdn.com/${profile.photo_id}`} width="30" height="300"/>
-            <div>NAME: {profile.first_name} {profile.last_name}</div>
-            <div>SCHOOL: {profile.school} </div>
-            <div>MAJOR: {profile.major} </div>
-            <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Request</button>
+
+          <div className="Something">
+            <div className="grid-container2">
+              <div class="item1">
+
+                <img src={`https://ucarecdn.com/${profile.photo_id}`} />
+
+              </div>
+
+              <div className="item2">
+
+                <div className="name"> <b>{profile.first_name.toUpperCase()} {profile.last_name.toUpperCase()}</b></div>
+                <h2>{profile.school}
+                <br></br>
+                {profile.major}</h2>
+
+                <button className="button is-red is-hollow" onClick={() => createMatch(profile.login_id)}>Send Match</button>
+
+              </div>
+            </div>
+          </div>
+            
           </>
         ))}
       </div>

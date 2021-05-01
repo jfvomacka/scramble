@@ -17,9 +17,6 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       [login_id_FROM, login_id_TO, login_id_TO, login_id_FROM]
     )
 
-    console.log(existingRequest);
-    console.log(existingMatch);
-
     if(existingRequest.rows.length > 0 && existingMatch.rows.length == 0) {
 
       // TO has already made a request to FROM: match now exists
@@ -46,8 +43,6 @@ module.exports = async (login_id_FROM, login_id_TO) => {
       `SELECT * FROM app_request WHERE login_id_TO = $2 AND login_id_FROM = $1 LIMIT 1 `,
       [login_id_FROM, login_id_TO]
     );
-
-    console.log(existingRequestReverse);
     
     if(existingMatch.rows.length == 0 && existingRequestReverse.rows.length == 0) {
       // Match does not currently exist: create new outgoing request

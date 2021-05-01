@@ -25,17 +25,32 @@ const Matches = () => {
   return (
     <div className="Matches">
       <div className="inner container is-fluid">
-        <h2 className="title has-text-centered">Matches</h2>
-        <p className="subtitle has-text-centered">
-          Here are your matches! 
-        </p>
+        <div className="title has-text-centered">MATCHES</div>
+        <div className="lemons">
+          What's cookin', good lookin'?
+        </div>
         {matchResults.map((profile) => (
           <>
-          <img src={`https://ucarecdn.com/${profile.photo_id}`} width="300" height="300"/>
-          <div>NAME: {profile.first_name} {profile.last_name}</div>
-          <div>SCHOOL: {profile.school} </div>
-          <div>MAJOR: {profile.major} </div>
-          <div>CONTACT INFO: {profile.contact} </div>
+          <div className="Something">
+            <div className="grid-container2">
+              <div class="item1">
+
+                <img src={`https://ucarecdn.com/${profile.photo_id}`} />
+
+              </div>
+
+              <div className="item2">
+
+                <div className="name"> <b>{profile.first_name.toUpperCase()} {profile.last_name.toUpperCase()}</b></div>
+                <h2>{profile.school}
+                <br></br>
+                {profile.major}
+                <br></br>
+                {profile.contact}</h2>
+
+              </div>
+            </div>
+          </div>
           </>
         ))}
       </div>
