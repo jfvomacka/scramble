@@ -58,15 +58,11 @@ const Profile = () => {
       }
   }
 
-  var imglink = "https://ucarecdn.com/" + profile.photo_id;
-
   const handleImageUpload = (fileInfo => { 
-
-    imglink = fileInfo.originalUrl;
 
     console.log(fileInfo);
 
-    const photo_id = fileInfo.uuid + "/" + fileInfo.cdnUrlModifiers + "/" + fileInfo.name;
+    const photo_id = fileInfo.uuid + "/" + fileInfo.name;
     const res = axios.put("/api/user/prof", {
       login_id: auth.user.login_id,
       uuid: photo_id
@@ -85,19 +81,18 @@ const Profile = () => {
         </div>
 
         <div className="profile-pic-div">
-        <img src={imglink} alt="" />
-          <Widget type="hidden"
-            public-key="f5699efd930d5eda3c90"
+        <img src={"https://ucarecdn.com/" + profile.photo_id} alt="" />
+
+        <Widget type="hidden"
+            id="profile-pic-upload"
+            publicKey="f5699efd930d5eda3c90"
             role="uploadcare-uploader"
-            id="profile-pic"
             tabs="file camera"
-            crop="300x300"
-            previewStep
-            imagesOnly
-            store="true"
+            crop=""
             clearable
             onChange={info => handleImageUpload(info)}
           />
+          
         </div>
 
         <div className="name"><b>{`${profile.first_name == null ? "" : profile.first_name.toUpperCase()} ${profile.last_name == null ? "" : profile.last_name.toUpperCase()}`}</b></div>

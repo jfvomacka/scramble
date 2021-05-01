@@ -36,6 +36,8 @@ const Search = () => {
 
     // set state
     setSearchResults(res.data.results.rows);
+
+    console.log(res.data.results.rows);
   };
 
   const createMatch = async (profile) => {
