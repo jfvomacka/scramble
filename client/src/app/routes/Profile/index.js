@@ -68,7 +68,7 @@ const Profile = () => {
       uuid: photo_id
     });
 
-    window.alert("Upload succeeded! Refresh the page to see your beautiful face ;)");
+    window.alert("Upload succeeded! Refresh the page to see your beautiful face ;) If it's not working, give it a second. Nothing's broken, it just means that there are too many of you sending requests!");
   })
 
 
