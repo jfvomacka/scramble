@@ -37,7 +37,7 @@ const Directory = () => {
   };
 
   return (
-    <div className="Search">
+    <div className="Directory">
       <div className="inner container is-fixed">
         <div className="title has-text-centered">SEARCH</div>
         <p>Senior Scramble's official Code Monkey apologizes for the problems with searching. To make up for it, here's a directory
@@ -86,7 +86,7 @@ const Directory = () => {
   );
 };
 
-export default Search;
+export default Directory;
 
 /*
 */
