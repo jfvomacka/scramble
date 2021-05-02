@@ -11,8 +11,6 @@ module.exports = async (searchTerm) => {
     const result = await pool.query(
       query
     );
-
-    console.log(result);
     
     return result;
 

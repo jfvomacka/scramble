@@ -35,7 +35,7 @@ const Matches = () => {
             <div className="grid-container2">
               <div class="item1">
 
-                <img src={`https://ucarecdn.com/${profile.photo_id}`} />
+              <img src={`https://ucarecdn.com/${profile.photo_id}`} />
 
               </div>
 

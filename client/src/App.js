@@ -24,6 +24,7 @@ const Matches = React.lazy(() => import("./app/routes/Matches"));
 const Search = React.lazy(() => import("./app/routes/Search"));
 const Reset = React.lazy(() => import("./app/routes/Reset"));
 const Directory = React.lazy(() => import("./app/routes/Directory"));
+const Forgot = React.lazy(() => import("./app/routes/Forgot"));
 
 const App = (props) => {
   //Check and update authentication status
@@ -52,6 +53,7 @@ const App = (props) => {
                 <Route exact path="/about" {...props} component={About} />
                 <Route exact path="/privacy" {...props} component={Privacy} />
                 <Route exact path="/reset" {...props} component={Reset} />
+                <Route exact path="/forgot" {...props} component={Forgot} />
                 <PrivateRoute exact path="/profile" {...props} component={Profile} />
                 <PrivateRoute exact path="/editing" {...props} component={Editing} />
                 <PrivateRoute exact path="/verify" {...props} component={Verify} />

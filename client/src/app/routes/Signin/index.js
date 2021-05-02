@@ -96,6 +96,10 @@ const Signin = () => {
           <NavLink exact activeClassName="active" className="no-deco" to="/reset">
             Forgot your password?
         </NavLink>
+        <br></br><br></br>
+        <NavLink exact activeClassName="active" className="no-deco" to="/forgot">
+            Forgot your login id?
+        </NavLink>
           </React.Fragment>
       </div>
     </div>

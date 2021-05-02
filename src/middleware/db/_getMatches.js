@@ -23,7 +23,8 @@ module.exports = async (login_id_FROM) => {
         last_name: newMatch.rows[0].last_name,
         school: newMatch.rows[0].school,
         major: newMatch.rows[0].major,
-        contact: newMatch.rows[0].contact_info
+        contact: newMatch.rows[0].contact_info,
+        photo_id: newMatch.rows[0].photo_id
       };
       matches.push(match);
     }

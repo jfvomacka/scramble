@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import "./index.scss";
 
@@ -104,8 +105,14 @@ const Verify = () => {
           onChange={handleChange}
           className="input"
         />
+
+
+        <NavLink exact activeClassName="active" className="no-deco" to="/forgot">
+            Forgot your login id?
+        </NavLink>
+        <br></br><br></br>
         <button onClick={onClickSendEmail} className="button is-blue is-hollow">Get a reset code</button>
-        <p>If you've forgotten your Login ID, contact us at <a href = "mailto: uscseniorscramble@gmail.com" target="_blank">uscseniorscramble@gmail.com</a>.</p>
+        
 
         <input
           type="text"

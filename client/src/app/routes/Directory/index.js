@@ -50,7 +50,7 @@ const Directory = () => {
         <div className="find">
           <div className="lemons">Sort by:</div>
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
-          <option value="" selected disabled hidden>Sort by... </option>
+          <option value="" selected hidden>Sort by... </option>
           <option value="first_name">Name</option>
           <option value="major">Major</option>
           <option value="school">School</option>

@@ -375,6 +375,70 @@ router.get("/pwreset/:login_id", async (req,res) => {
   }
 });
 
+//@route    GET api/user/recoverID
+//@desc     Get the login ID on file for an existing email
+//@access   private
+router.get("/recoverID/:email", async (req,res) => {
+  try {
+    const email = req.params.email;
+
+    console.log(email);
+
+    //Get user profile
+    const user = await mw.db.getUserByEmail(email);
+
+    if (!user) {
+      return res.status(409).json({
+        message: "Login id could not be found",
+      });
+    }
+
+    // Send reset email
+    const mail = function(recipient, subject, message) {
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL,
+          pass: process.env.EMAILPASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: recipient,
+        subject,
+        text: message,
+      };
+
+      transporter.sendMail(mailOptions), (error, info) => {
+        if(error) {
+          console.log(error);
+          return error;
+        }
+        //console.log(`Email sent: $(info.response}`);
+        return 200;
+      };
+    };
+
+    const subject = "Senior SCramble Login ID";
+    const recipient = user.email;
+    const message = "Your Senior SCramble Login ID is: " + user.login_id;
+    mail(recipient, subject, message);
+
+    return res.status(200).json({
+      message: "User ID sent",
+      email: user.email
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    PUT api/user/password
 //@desc     Update a user's password after a reset
 //@access   private
