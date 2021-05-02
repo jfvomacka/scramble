@@ -26,7 +26,7 @@ const Directory = () => {
     setSearchResults(res.data.results.rows);
   };
 
-  const createMatch = async (term) => {
+  const createMatch = async (profile) => {
     // do backend request
     const res = await axios.post("/api/user/match", {
       login_id_FROM: auth.user.login_id,
