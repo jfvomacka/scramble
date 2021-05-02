@@ -47,6 +47,10 @@ const NavbarMain = (props) => {
               MATCHES
             </NavLink>
             <div className="heart">♥ </div>
+            <NavLink exact activeClassName="active" className="no-deco" to="/directory">
+              DIRECTORY
+            </NavLink>
+            <div className="heart">♥ </div>
             <NavLink exact activeClassName="active" className="no-deco" to="/profile">
               PROFILE
             </NavLink>

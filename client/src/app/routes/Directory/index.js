@@ -39,7 +39,7 @@ const Directory = () => {
   return (
     <div className="Directory">
       <div className="inner container is-fixed">
-        <div className="title has-text-centered">SEARCH</div>
+        <div className="title has-text-centered">DIRECTORY</div>
         <p>Senior Scramble's official Code Monkey apologizes for the problems with searching. To make up for it, here's a directory
           of all the users on the site, sortable by name, major, and school. As always, Senior Scramble is
           anonymous unless the match is mutual, so your crushes won’t know you sent them a match unless they send you one back ;)</p>
