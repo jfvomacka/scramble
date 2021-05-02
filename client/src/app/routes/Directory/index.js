@@ -13,39 +13,24 @@ import "./index.scss";
 const Search = () => {
   const auth = useSelector((state) => state.auth);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  //const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchType, setSearchType] = useState("Name");
 
   const grabSearchResults = async () => {
     let res;
     // do the backend request for search results
-
-    if (searchType === "Name") {
-
-      var terms = searchTerm.split(" ");
-      res = await axios.get(`/api/user/searchName/${terms[0]}/${terms[1]}`);
-      
-    }
-    //else if (searchType === "School") {
-      //res = await axios.get(`/api/user/searchSchool/${searchTerm}`);
-    //}
-    else if (searchType === "Major") {
-      res = await axios.get(`/api/user/searchMajor/${searchTerm}`);
-    }
+    res = await axios.get(`/api/user/windowShopping/${searchType}`);
 
     // set state
     setSearchResults(res.data.results.rows);
   };
 
-  const createMatch = async (profile) => {
+  const createMatch = async (term) => {
     // do backend request
-    const res = await axios.post("/api/user/match", {
-      login_id_FROM: auth.user.login_id,
-      login_id_TO: profile,
-    });
+    const res = await axios.get(`/api/user/searchName/${term}`);
     if (res.status !== 200) {
-      console.log("match error");
+      console.log("Oopsie Woopsie! Uwu we made a fucky wucky!");
     }
 
     window.alert(res.data.message);
@@ -55,25 +40,20 @@ const Search = () => {
     <div className="Search">
       <div className="inner container is-fixed">
         <div className="title has-text-centered">SEARCH</div>
-        <p>Search for users by name or by major (searching by school is coming soon). Senior Scramble is
+        <p>Senior Scramble's official Code Monkey apologizes for the problems with searching. To make up for it, here's a directory
+          of all the users on the site, sortable by name, major, and school. As always, Senior Scramble is
           anonymous unless the match is mutual, so your crushes won’t know you sent them a match unless they send you one back ;)</p>
-        <input
-          type="text"
-          placeholder="Search for potential matches!"
-          name="searchId"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="input"
-        />
+        
         <div className="find">
-          <div className="lemons">Search by:</div>
+          <div className="lemons">Sort by:</div>
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
-          <option value="Name">Name</option>
-          <option value="Major">Major</option>
+          <option value="first_name">Name</option>
+          <option value="major">Major</option>
+          <option value="school">School</option>
         </select>
         </div>
         <div className="buttons">
-          <button className="button is-red is-hollow" onClick={grabSearchResults}>SEARCH</button>
+          <button className="button is-red is-hollow" onClick={grabSearchResults}>SCRAMBLE!</button>
         </div>
         {searchResults.map((profile) => (
           <>

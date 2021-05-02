@@ -60,8 +60,6 @@ const Profile = () => {
 
   const handleImageUpload = (fileInfo => { 
 
-    console.log(fileInfo);
-
     const photo_id = fileInfo.uuid + "/" + fileInfo.name;
     const res = axios.put("/api/user/prof", {
       login_id: auth.user.login_id,

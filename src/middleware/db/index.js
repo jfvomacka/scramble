@@ -13,5 +13,6 @@ module.exports = {
     searchByName: require ("./_searchByName"),
     searchBySchool: require ("./_searchBySchool"),
     searchByMajor: require ("./_searchByMajor"),
-    updatePassword: require("./_updatePassword")
+    updatePassword: require("./_updatePassword"),
+    windowShopping: require("./_windowShopping")
 }

@@ -228,6 +228,30 @@ router.get("/me", [mw.auth.authenticate], async (req,res) => {
   }
 });
 
+//@route    GET api/user/windowShopping
+//@desc     Get the details of an existing user
+//@access   private
+router.get("/windowShopping/:searchTerm", [mw.auth.authenticate], async (req,res) => {
+  try {
+    const searchTerm = req.params.searchTerm;
+
+    //Handle match request
+    const users = await mw.db.windowShopping(searchTerm);
+
+    return res.status(200).json({
+      message: "Successfully shopped, windowly",
+      results: users
+    });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal Server Error",
+      payload: error,
+    });
+  }
+});
+
 //@route    GET api/user/profile
 //@desc     Get the entire profile of an existing user
 //@access   private
