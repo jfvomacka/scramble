@@ -10,7 +10,7 @@ import "./index.scss";
 
 //Import containers
 
-const Search = () => {
+const Directory = () => {
   const auth = useSelector((state) => state.auth);
 
   //const [searchTerm, setSearchTerm] = useState("");
