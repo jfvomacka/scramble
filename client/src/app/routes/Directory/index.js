@@ -28,9 +28,12 @@ const Directory = () => {
 
   const createMatch = async (term) => {
     // do backend request
-    const res = await axios.get(`/api/user/searchName/${term}`);
+    const res = await axios.post("/api/user/match", {
+      login_id_FROM: auth.user.login_id,
+      login_id_TO: profile,
+    });
     if (res.status !== 200) {
-      console.log("Oopsie Woopsie! Uwu we made a fucky wucky!");
+      console.log("match error");
     }
 
     window.alert(res.data.message);
@@ -41,12 +44,13 @@ const Directory = () => {
       <div className="inner container is-fixed">
         <div className="title has-text-centered">DIRECTORY</div>
         <p>Senior Scramble's official Code Monkey apologizes for the problems with searching. To make up for it, here's a directory
-          of all the users on the site, sortable by name, major, and school. As always, Senior Scramble is
+          of all the users on the site, sortable by name, major, and school, all alphabetically. As always, Senior Scramble is
           anonymous unless the match is mutual, so your crushes won’t know you sent them a match unless they send you one back ;)</p>
         
         <div className="find">
           <div className="lemons">Sort by:</div>
         <select value={searchType} onChange={(e) => setSearchType(e.target.value)}>
+          <option value="" selected disabled hidden>Sort by... </option>
           <option value="first_name">Name</option>
           <option value="major">Major</option>
           <option value="school">School</option>
